@@ -30,3 +30,4 @@ $result = $conn->query($query); // Execute the query
         <a href="like.php?post_id=<?php echo $post['id']; ?>">Like</a> <!-- Link to like the post -->
     </div>
 <?php } ?>
+// Close the database connection
