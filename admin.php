@@ -59,7 +59,7 @@ $result = $stmt->get_result(); // Get the result set
             <th>Role</th>
             <th>Action</th>
         </tr>
-        <?php while ($user = $result->fetch_assoc()): ?> <!-- Loop through all users -->
+        <?php while ($user = $result->fetch_assoc()): ?> <!-- Loop /through all users -->
         <tr>
             <td><?php echo $user["id"]; ?></td> <!-- Display user ID -->
             <td><?php echo htmlspecialchars($user["username"]); ?></td> <!-- Display username -->
