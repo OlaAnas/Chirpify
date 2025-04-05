@@ -62,7 +62,7 @@ header.dark-mode {
 
 /* Post header styling */
 .post-header {
-    display: flex; /* Use flexbox for layout */
+    display: flex; /* Use flexbox for layout. */
     align-items: center; /* Align items vertically */
     margin-bottom: 10px; /* Add space below the header */
 }
