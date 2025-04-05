@@ -152,6 +152,7 @@ $result = $stmt->get_result(); // Get the result set
                 </form>
 
                 <!-- Display comments for each post -->
+                <div class="comments">
                 <h4>Comments:</h4>
                 <?php
                 $post_id = $post['id'];
@@ -165,6 +166,7 @@ $result = $stmt->get_result(); // Get the result set
                     <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p> <!-- Display comment content -->
                     <small>Commented on <?php echo $comment['created_at']; ?></small><br> <!-- Display comment creation date -->
                 <?php endwhile; ?>
+                </div>
             </li>
         <?php endwhile; ?>
     </ul>
