@@ -2,7 +2,7 @@
 session_start();
 include 'config.php';
 
-// Ensure the 'is_admin' session variable is set when the user logs in
+// Ensure the 'is_admin' session variable is set when the user logs in.
 if (!isset($_SESSION["is_admin"])) {
     $stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?");
     $stmt->bind_param("i", $_SESSION["user_id"]);
