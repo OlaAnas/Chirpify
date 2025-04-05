@@ -83,6 +83,17 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 <body>
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
+
+    <!-- Button to navigate to profile -->
+    <a href="profile.php">
+        <button>Go to Profile</button>
+    </a>
+
+    <!-- Admin Dashboard link -->
+    <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
+        <a href="admin_dashboard.php">Admin Dashboard</a>
+    <?php endif; ?>
+
     <form method="post"> <!-- Form to create a new post -->
         <textarea name="content" placeholder="What's on your mind?" required></textarea><br> <!-- Textarea for post content -->
         <button type="submit">Post</button> <!-- Submit button -->
@@ -96,9 +107,9 @@ $result = $stmt->get_result(); // Get the result set
                 <small>Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
 
                 <!-- Like button -->
-                <form method="post" action="like.php"> <!-- Form to like a post -->
+                <form method="post" action="like.php"> <!-- Form to handle likes -->
                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
-                    <button type="submit" name="like">❤️ Like (<?php echo $post['like_count']; ?>)</button> <!-- Like button with like count -->
+                    <button type="submit">❤️ Like (<?php echo $post['like_count']; ?>)</button> <!-- Like button with like count -->
                 </form>
 
                 <!-- Delete button (only for post owner) -->
@@ -108,6 +119,28 @@ $result = $stmt->get_result(); // Get the result set
                         <button type="submit" name="delete">🗑️ Delete</button> <!-- Delete button -->
                     </form>
                 <?php endif; ?>
+
+                <!-- Comment form -->
+                <form method="post" action="comment.php"> <!-- Form to add a comment -->
+                    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
+                    <textarea name="comment" required placeholder="Write a comment..."></textarea><br> <!-- Textarea for comment -->
+                    <button type="submit">Post Comment</button> <!-- Submit button for comment -->
+                </form>
+
+                <!-- Display comments for each post -->
+                <h4>Comments:</h4>
+                <?php
+                $post_id = $post['id'];
+                $comment_query = "SELECT comments.comment_text, users.username, comments.created_at
+                                  FROM comments 
+                                  JOIN users ON comments.user_id = users.id
+                                  WHERE comments.post_id = $post_id
+                                  ORDER BY comments.created_at DESC"; // Query to fetch comments for the post
+                $comment_result = $conn->query($comment_query); // Execute the query
+                while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
+                    <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p> <!-- Display comment content -->
+                    <small>Commented on <?php echo $comment['created_at']; ?></small><br> <!-- Display comment creation date -->
+                <?php endwhile; ?>
             </li>
         <?php endwhile; ?>
     </ul>

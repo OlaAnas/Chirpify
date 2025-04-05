@@ -25,9 +25,15 @@ if ($result->num_rows == 0) { // If the user has not already liked the post
     $stmt = $conn->prepare("INSERT INTO likes (user_id, post_id) VALUES (?, ?)");
     $stmt->bind_param("ii", $user_id, $post_id);
     $stmt->execute();
+} else { // If the user has already liked the post, remove the like (toggle functionality)
+    $stmt = $conn->prepare("DELETE FROM likes WHERE user_id = ? AND post_id = ?");
+    $stmt->bind_param("ii", $user_id, $post_id);
+    $stmt->execute();
 }
 
 $stmt->close(); // Close the statement
-header("Location: dashboard.php"); // Redirect back to the dashboard
+
+// Redirect back to the referring page
+header("Location: " . $_SERVER["HTTP_REFERER"]);
 exit;
 ?>
