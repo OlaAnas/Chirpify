@@ -15,7 +15,7 @@ body.dark-mode {
 
 /* Header styling */
 header {
-    background-color: #1da1f2; /* Twitter blue */
+    background-color:rgb(29, 161, 242); /* Twitter blue */
     color: white; /* White text color */
     padding: 10px 20px; /* Add padding inside the header */
     text-align: center; /* Center align the text */
