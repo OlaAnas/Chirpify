@@ -223,6 +223,31 @@ img {
 /* Comments section styling */
 .comments {
     margin-top: 10px; /* Add space above comments */
-    padding-left: 15px; /* Indent comments */
-    border-left: 2px solid #ddd; /* Light gray left border. */
+    padding: 15px; /* Add padding inside the comments box */
+    background-color: #fff; /* White background for the comments box */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    margin-bottom: 15px; /* Add space below the comments box */
+}
+
+/* Posted comments styling */
+.posted-comments {
+    margin-top: 10px; /* Add space above the comments section */
+    padding: 15px; /* Add padding inside the comments box */
+    background-color: #fff; /* White background for the comments box */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    margin-bottom: 15px; /* Add space below the comments box */
+}
+
+.comments {
+    margin-top: 10px; /* Add space above comments */
+    padding: 15px; /* Add padding inside the comments box */
+    background-color: #fff; /* White background for the comments box */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    margin-bottom: 15px; /* Add space below the comments box */
 }
