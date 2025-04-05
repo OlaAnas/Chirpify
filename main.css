@@ -224,5 +224,5 @@ img {
 .comments {
     margin-top: 10px; /* Add space above comments */
     padding-left: 15px; /* Indent comments */
-    border-left: 2px solid #ddd; /* Light gray left border */
+    border-left: 2px solid #ddd; /* Light gray left border. */
 }
