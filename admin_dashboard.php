@@ -2,6 +2,17 @@
 session_start();
 include 'config.php';
 
+// Ensure the 'is_admin' session variable is set when the user logs in
+if (!isset($_SESSION["is_admin"])) {
+    $stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?");
+    $stmt->bind_param("i", $_SESSION["user_id"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $_SESSION["is_admin"] = $user["is_admin"] ?? 0; // Default to 0 if not set
+    $stmt->close();
+}
+
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION["user_id"]) || !$_SESSION["is_admin"]) {
     die("Access denied. You must be an admin to view this page.");
