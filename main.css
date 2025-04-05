@@ -1,0 +1,228 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif; /* Set the font family */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #e6ecf0; /* Twitter-like light gray background */
+    color: #14171a; /* Twitter-like dark gray text color */
+}
+
+/* Dark mode styling */
+body.dark-mode {
+    background-color: #1c1c1c; /* Dark background */
+    color: #f5f5f5; /* Light text color */
+}
+
+/* Header styling */
+header {
+    background-color: #1da1f2; /* Twitter blue */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Add padding inside the header */
+    text-align: center; /* Center align the text */
+    font-size: 24px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+}
+
+header.dark-mode {
+    background-color: #333; /* Darker header background */
+    color: #f5f5f5; /* Light text color */
+}
+
+/* Main container styling */
+.container {
+    max-width: 800px; /* Limit the width of the content */
+    margin: 20px auto; /* Center the container */
+    background-color: white; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.container.dark-mode {
+    background-color: #2c2c2c; /* Dark container background */
+    border: 1px solid #444; /* Darker border */
+}
+
+/* Post styling */
+.post {
+    padding: 15px; /* Add padding inside posts */
+    border-bottom: 1px solid #ddd; /* Light gray border between posts */
+}
+
+.post.dark-mode {
+    background-color: #2c2c2c; /* Dark post background */
+    border: 1px solid #444; /* Darker border */
+}
+
+/* Last post without border */
+.post:last-child {
+    border-bottom: none; /* Remove border for the last post */
+}
+
+/* Post header styling */
+.post-header {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add space below the header */
+}
+
+/* Profile picture styling */
+.post-header img {
+    width: 40px; /* Set width */
+    height: 40px; /* Set height */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Add space to the right */
+}
+
+/* Username styling */
+.post-header .username {
+    font-weight: bold; /* Bold text */
+    color: #14171a; /* Twitter-like dark gray */
+}
+
+/* Post content styling */
+.post-content {
+    font-size: 16px; /* Set font size */
+    line-height: 1.5; /* Increase line height for readability */
+    color: #14171a; /* Twitter-like dark gray */
+    margin-bottom: 10px; /* Add space below the content */
+}
+
+/* Like button styling */
+.like-button {
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+    color: #1da1f2; /* Twitter blue */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Set font size */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+}
+
+/* Like button hover effect */
+.like-button:hover {
+    text-decoration: underline; /* Underline text on hover */
+}
+
+/* Like count styling */
+.like-count {
+    margin-left: 5px; /* Add space to the left */
+    font-size: 14px; /* Set font size */
+    color: #657786; /* Twitter-like light gray */
+}
+
+/* Button styling */
+button {
+    background-color: #1da1f2; /* Twitter blue */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Add padding inside buttons */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Set font size */
+    font-weight: bold; /* Bold text */
+}
+
+button.dark-mode {
+    background-color: #444; /* Dark button background */
+    color: #f5f5f5; /* Light text color */
+}
+
+button.dark-mode:hover {
+    background-color: #555; /* Slightly lighter on hover */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #0d8ddf; /* Darker blue on hover */
+}
+
+/* Navigation link styling */
+a {
+    text-decoration: none; /* Remove underline */
+    color: #1da1f2; /* Twitter blue */
+    font-weight: bold; /* Bold text */
+}
+
+a.dark-mode {
+    color: #1da1f2; /* Keep links blue */
+}
+
+a.dark-mode:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Navigation link hover effect */
+a:hover {
+    text-decoration: underline; /* Underline text on hover */
+}
+
+/* Headings styling */
+h1, h2, h3 {
+    color: #333; /* Dark gray color for headings */
+    margin-bottom: 10px; /* Add space below headings */
+}
+
+/* Form styling */
+form {
+    margin-bottom: 20px; /* Add space below forms */
+    padding: 15px; /* Add padding inside forms */
+    background-color: #fff; /* White background for forms */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Input and textarea styling */
+input, textarea {
+    width: 100%; /* Full width */
+    margin: 5px 0; /* Add space above and below */
+    padding: 10px; /* Add padding inside inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Set font size */
+}
+
+/* Table styling */
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    margin-bottom: 20px; /* Add space below tables */
+}
+
+/* Table header styling */
+th {
+    background-color: #007bff; /* Blue background for headers */
+    color: white; /* White text color */
+    padding: 10px; /* Add padding inside headers */
+    text-align: left; /* Align text to the left */
+}
+
+/* Table cell styling */
+td {
+    padding: 10px; /* Add padding inside cells */
+    border: 1px solid #ddd; /* Light gray border */
+}
+
+/* Profile picture styling */
+img {
+    border-radius: 50%; /* Make images circular */
+    border: 2px solid #ddd; /* Light gray border */
+    padding: 5px; /* Add padding inside the border */
+}
+
+/* Container for posts */
+.post {
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Add padding inside posts */
+    margin-bottom: 15px; /* Add space below posts */
+}
+
+/* Comments section styling */
+.comments {
+    margin-top: 10px; /* Add space above comments */
+    padding-left: 15px; /* Indent comments */
+    border-left: 2px solid #ddd; /* Light gray left border */
+}

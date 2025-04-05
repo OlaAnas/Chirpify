@@ -54,6 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $check_post->get_result(); // Get the result
 
         if ($result->num_rows > 0) { // If the post belongs to the user
+            // Delete likes associated with the post
+            $delete_likes = $conn->prepare("DELETE FROM likes WHERE post_id = ?");
+            $delete_likes->bind_param("i", $post_id); // Bind parameters
+            $delete_likes->execute(); // Execute the query
+            $delete_likes->close(); // Close the statement
+
+            // Delete comments associated with the post
+            $delete_comments = $conn->prepare("DELETE FROM comments WHERE post_id = ?");
+            $delete_comments->bind_param("i", $post_id); // Bind parameters
+            $delete_comments->execute(); // Execute the query
+            $delete_comments->close(); // Close the statement
+
             // Delete the post from the database
             $stmt = $conn->prepare("DELETE FROM posts WHERE id = ?");
             $stmt->bind_param("i", $post_id); // Bind parameters
@@ -80,8 +92,20 @@ $result = $stmt->get_result(); // Get the result set
 <html>
 <head>
     <title>Dashboard - Chirpify</title>
+    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const links = document.querySelectorAll('a');
+            links.forEach(link => link.classList.toggle('dark-mode'));
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => button.classList.toggle('dark-mode'));
+        }
+    </script>
 </head>
+
 <body>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
     <!-- Button to navigate to profile -->

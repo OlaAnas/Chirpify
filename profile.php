@@ -36,8 +36,19 @@ $stmt->close(); // Close the statement
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($user['username']); ?>'s Profile - Chirpify</title>
+    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const links = document.querySelectorAll('a');
+            links.forEach(link => link.classList.toggle('dark-mode'));
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => button.classList.toggle('dark-mode'));
+        }
+    </script>
 </head>
 <body>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
 <h2><?php echo htmlspecialchars($user['username']); ?>'s Profile</h2> <!-- Display the user's username -->
 
@@ -67,6 +78,12 @@ $stmt->close(); // Close the statement
 
 <br>
 <a href="dashboard.php">Back to Dashboard</a> <!-- Link to go back to the dashboard -->
+
+<br>
+<!-- Button to navigate to edit profile -->
+<a href="edit_profile.php">
+    <button>Edit Profile</button>
+</a>
 
 </body>
 </html>
