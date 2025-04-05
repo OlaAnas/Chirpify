@@ -10,11 +10,11 @@ $user_id = $_SESSION["user_id"];
 $post_id = $_POST["post_id"];
 $comment = $_POST["comment"];
 
-// Insert the comment into the database
-$stmt = $conn->prepare("INSERT INTO comments (post_id, user_id, comment) VALUES (?, ?, ?)");
-$stmt->bind_param("iis", $post_id, $user_id, $comment);
-$stmt->execute();
-$stmt->close();
+// Correct the column name in the INSERT query to match the database schema
+$stmt = $conn->prepare("INSERT INTO comments (post_id, user_id, comment_text) VALUES (?, ?, ?)"); // Use 'comment_text' instead of 'comment'
+$stmt->bind_param("iis", $post_id, $user_id, $comment); // Bind parameters
+$stmt->execute(); // Execute the query
+$stmt->close(); // Close the statement
 
 header("Location: dashboard.php");
 exit;
