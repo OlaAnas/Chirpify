@@ -12,6 +12,20 @@ body.dark-mode {
     background-color: #1c1c1c; /* Dark background */
     color: #f5f5f5; /* Light text color */
 }
+/* Dashboard main container */
+.dashboard-container {
+    max-width: 800px; /* Limit width to keep content readable */
+    margin: 40px auto; /* Center horizontally with vertical spacing */
+    padding: 20px; /* Space inside the container */
+    background-color: #c3c1c1; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+/* Dark mode for dashboard container */
+body.dark-mode .dashboard-container {
+    background-color: #2c2c2c; /* Dark background */
+    box-shadow: none; /* Remove shadow for dark mode */
+}
 
 /* Header styling */
 header {
@@ -122,6 +136,7 @@ button {
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 14px; /* Set font size */
     font-weight: bold; /* Bold text */
+    margin: 10px; /* Add space around buttons */;
 }
 
 button.dark-mode {
@@ -223,31 +238,6 @@ img {
 /* Comments section styling */
 .comments {
     margin-top: 10px; /* Add space above comments */
-    padding: 15px; /* Add padding inside the comments box */
-    background-color: #fff; /* White background for the comments box */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
-    margin-bottom: 15px; /* Add space below the comments box */
-}
-
-/* Posted comments styling */
-.posted-comments {
-    margin-top: 10px; /* Add space above the comments section */
-    padding: 15px; /* Add padding inside the comments box */
-    background-color: #fff; /* White background for the comments box */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
-    margin-bottom: 15px; /* Add space below the comments box */
-}
-
-.comments {
-    margin-top: 10px; /* Add space above comments */
-    padding: 15px; /* Add padding inside the comments box */
-    background-color: #fff; /* White background for the comments box */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
-    margin-bottom: 15px; /* Add space below the comments box */
+    padding-left: 15px; /* Indent comments */
+    border-left: 2px solid #ddd; /* Light gray left border. */
 }

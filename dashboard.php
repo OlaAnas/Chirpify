@@ -105,7 +105,8 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <div class="dashboard-container"> <!-- Dark mode toggle button -->
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
     <!-- Button to navigate to profile -->
@@ -152,6 +153,7 @@ $result = $stmt->get_result(); // Get the result set
                 </form>
 
                 <!-- Display comments for each post -->
+                <div class="comments">
                 <h4>Comments:</h4>
                 <?php
                 $post_id = $post['id'];
@@ -165,12 +167,14 @@ $result = $stmt->get_result(); // Get the result set
                     <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p> <!-- Display comment content -->
                     <small>Commented on <?php echo $comment['created_at']; ?></small><br> <!-- Display comment creation date -->
                 <?php endwhile; ?>
+                </div>
             </li>
         <?php endwhile; ?>
     </ul>
 
     <br>
     <a href="logout.php">Logout</a> <!-- Logout link -->
+    </div> <!-- End of dashboard container -->
 </body>
 </html>
 <?php $stmt->close(); // Close the statement ?>
