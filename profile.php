@@ -49,6 +49,7 @@ $stmt->close(); // Close the statement
 </head>
 <body>
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <div class="container"> 
 
 <h2><?php echo htmlspecialchars($user['username']); ?>'s Profile</h2> <!-- Display the user's username -->
 
@@ -84,6 +85,6 @@ $stmt->close(); // Close the statement
 <a href="edit_profile.php">
     <button>Edit Profile</button>
 </a>
-
+</div> <!-- End of container -->
 </body>
 </html>

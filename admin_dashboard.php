@@ -42,6 +42,7 @@ $result = $conn->query($query);
 <body>
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 <h2>Admin Dashboard</h2>
+<div class="container"> 
 
 <!-- Admin Dashboard link -->
 <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
@@ -79,5 +80,6 @@ $result = $conn->query($query);
         <?php endwhile; ?>
     </tbody>
 </table>
+</div>
 </body>
 </html>

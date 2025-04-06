@@ -24,14 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
 <html>
 <head>
     <title>Register - Chirpify</title>
+    <link rel="stylesheet" href="main.css">  <!-- Link to the CSS file -->
 </head>
 <body>
     <h2>Register</h2>
+    <div class="container">
     <form method="post"> <!-- Form to register a new user -->
         <input type="text" name="username" placeholder="Username" required><br> <!-- Input for username -->
         <input type="email" name="email" placeholder="Email" required><br> <!-- Input for email -->
         <input type="password" name="password" placeholder="Password" required><br> <!-- Input for password -->
         <button type="submit">Register</button> <!-- Submit button -->
     </form>
+    </div>
 </body>
 </html>

@@ -14,7 +14,8 @@ $query = "SELECT posts.id, posts.content, posts.created_at, users.username
           ORDER BY posts.created_at DESC"; // Query to fetch posts
 $result = $conn->query($query); // Execute the query
 ?>
-
+<link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+<div class="container_post"> 
 <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
 <a href="logout.php">Logout</a> <!-- Logout link -->
 
@@ -30,4 +31,5 @@ $result = $conn->query($query); // Execute the query
         <a href="like.php?post_id=<?php echo $post['id']; ?>">Like</a> <!-- Link to like the post -->
     </div>
 <?php } ?>
+</div> <!-- Close the container for posts -->
 // Close the database connection
