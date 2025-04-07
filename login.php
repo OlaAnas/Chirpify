@@ -39,13 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Login - Chirpify</title>
+    <link rel="stylesheet" href="main.css">  <!-- Link to the CSS file -->
 </head>
 <body>
     <h2>Login</h2>
+    <div class="container"> 
     <form method="post">
         <input type="email" name="email" placeholder="Email" required><br> <!-- Email input field -->
         <input type="password" name="password" placeholder="Password" required><br> <!-- Password input field -->
         <button type="submit">Login</button> <!-- Submit button -->
     </form>
+    </div>
 </body>
 </html>

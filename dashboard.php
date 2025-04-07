@@ -105,8 +105,8 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-    <div class="dashboard-container"> <!-- Dark mode toggle button -->
+    <button  onclick="toggleDarkMode()">Toggle Dark Mode</button><!-- Dark mode toggle button -->
+    <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
     <!-- Button to navigate to profile -->

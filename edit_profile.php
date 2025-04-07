@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
 <h2>Edit Profile</h2>
+<div class="container"> 
 
 <form method="post">
     <label>New Username:</label>
@@ -84,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <a href="profile.php">
     <button>Back to Profile</button>
 </a>
+</div>
 
 </body>
 </html>

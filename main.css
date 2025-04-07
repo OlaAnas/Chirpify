@@ -1,243 +1,422 @@
-/* General body styling */
+/* ===============================
+   General Body Styling
+================================= */
 body {
-    font-family: Arial, sans-serif; /* Set the font family */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    background-color: #e6ecf0; /* Twitter-like light gray background */
-    color: #14171a; /* Twitter-like dark gray text color */
+    font-family: Arial, sans-serif;            /* Set the font family */
+    margin: 0;                                 /* Remove default margin */
+    padding: 0;                                /* Remove default padding */
+    background-color: #e6ecf0;                 /* Light gray background */
+    color: #14171a;                            /* Dark text color */
 }
 
-/* Dark mode styling */
+/* Dark Mode Styling */
 body.dark-mode {
-    background-color: #1c1c1c; /* Dark background */
-    color: #f5f5f5; /* Light text color */
-}
-/* Dashboard main container */
-.dashboard-container {
-    max-width: 800px; /* Limit width to keep content readable */
-    margin: 40px auto; /* Center horizontally with vertical spacing */
-    padding: 20px; /* Space inside the container */
-    background-color: #c3c1c1; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-/* Dark mode for dashboard container */
-body.dark-mode .dashboard-container {
-    background-color: #2c2c2c; /* Dark background */
-    box-shadow: none; /* Remove shadow for dark mode */
+    background-color: #1c1c1c;                 /* Dark background */
+    color: #f5f5f5;                            /* Light text color */
 }
 
-/* Header styling */
-header {
-    background-color:rgb(29, 161, 242); /* Twitter blue */
-    color: white; /* White text color */
-    padding: 10px 20px; /* Add padding inside the header */
-    text-align: center; /* Center align the text */
-    font-size: 24px; /* Larger font size */
-    font-weight: bold; /* Bold text */
-}
-
-header.dark-mode {
-    background-color: #333; /* Darker header background */
-    color: #f5f5f5; /* Light text color */
-}
-
-/* Main container styling */
+/* ===============================
+   Dashboard Container
+================================= */
 .container {
-    max-width: 800px; /* Limit the width of the content */
-    margin: 20px auto; /* Center the container */
-    background-color: white; /* White background */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden; /* Prevent content overflow */
+    max-width: 800px;                          /* Limit width */
+    margin: 40px auto;                         /* Center horizontally */
+    padding: 20px;                             /* Inner spacing */
+    background-color: #f2f2f2;                 /* Light gray background */
+    border-radius: 10px;                       /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
 }
 
+/* Dark Mode for Dashboard */
+body.dark-mode .dashboard-container {
+    background-color: #2c2c2c;                 /* Dark background */
+    box-shadow: none;                          /* Remove shadow in dark mode */
+}
+
+/* ===============================
+   Header Styling
+================================= */
+header {
+    background-color: rgb(29, 161, 242);       /* Twitter blue */
+    color: white;                              /* White text */
+    padding: 10px 20px;                        /* Padding */
+    text-align: center;                        /* Centered text */
+    font-size: 24px;                           /* Large text */
+    font-weight: bold;                         /* Bold font */
+}
+
+/* Dark Mode for Header */
+header.dark-mode {
+    background-color: #333;                    /* Dark background */
+    color: #f5f5f5;                            /* Light text color */
+}
+
+/* ===============================
+   Main Container
+================================= */
+.container {
+    max-width: 800px;                          /* Limit width */
+    margin: 20px auto;                         /* Center on page */
+    background-color: #f2f2f2;                 /* Light gray background */
+    border: 1px solid #ddd;                    /* Subtle border */
+    border-radius: 8px;                        /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    overflow: hidden;                          /* Prevent overflow */
+}
+
+/* Dark Mode for Main Container */
 .container.dark-mode {
-    background-color: #2c2c2c; /* Dark container background */
-    border: 1px solid #444; /* Darker border */
+    background-color: #2c2c2c;                 /* Dark background */
+    border: 1px solid #444;                    /* Darker border */
 }
 
-/* Post styling */
+/* ===============================
+   Post Styling
+================================= */
 .post {
-    padding: 15px; /* Add padding inside posts */
-    border-bottom: 1px solid #ddd; /* Light gray border between posts */
+    background-color: white;                   /* White background for posts */
+    border: 1px solid #ddd;                    /* Light border */
+    border-radius: 5px;                        /* Rounded corners */
+    padding: 15px;                             /* Padding inside post */
+    margin: 15px;                              /* Margin between posts */
 }
 
-.post.dark-mode {
-    background-color: #2c2c2c; /* Dark post background */
-    border: 1px solid #444; /* Darker border */
-}
-
-/* Last post without border */
+/* Last post without bottom border */
 .post:last-child {
-    border-bottom: none; /* Remove border for the last post */
+    border-bottom: none;                       /* Remove last border */
 }
 
-/* Post header styling */
+/* ===============================
+   Post Header
+================================= */
 .post-header {
-    display: flex; /* Use flexbox for layout. */
-    align-items: center; /* Align items vertically */
-    margin-bottom: 10px; /* Add space below the header */
+    display: flex;                             /* Flex layout */
+    align-items: center;                       /* Vertical center */
+    margin-bottom: 10px;                       /* Space below */
 }
 
-/* Profile picture styling */
 .post-header img {
-    width: 40px; /* Set width */
-    height: 40px; /* Set height */
-    border-radius: 50%; /* Make it circular */
-    margin-right: 10px; /* Add space to the right */
+    width: 40px;                               /* Profile image size */
+    height: 40px;
+    border-radius: 50%;                        /* Circular */
+    margin-right: 10px;                        /* Space to right */
 }
 
-/* Username styling */
 .post-header .username {
-    font-weight: bold; /* Bold text */
-    color: #14171a; /* Twitter-like dark gray */
+    font-weight: bold;                         /* Bold username */
+    color: #14171a;                            /* Dark text */
 }
 
-/* Post content styling */
+/* ===============================
+   Post Content
+================================= */
 .post-content {
-    font-size: 16px; /* Set font size */
-    line-height: 1.5; /* Increase line height for readability */
-    color: #14171a; /* Twitter-like dark gray */
-    margin-bottom: 10px; /* Add space below the content */
+    font-size: 16px;                           /* Font size */
+    line-height: 1.5;                          /* Line spacing */
+    color: #14171a;                            /* Dark text */
+    margin-bottom: 10px;                       /* Space below */
 }
 
-/* Like button styling */
+/* ===============================
+   Like Button
+================================= */
 .like-button {
-    background-color: transparent; /* Transparent background */
-    border: none; /* Remove border */
-    color: #1da1f2; /* Twitter blue */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 14px; /* Set font size */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Align items vertically */
+    background-color: white;                   /* White background */
+    border: 1px solid #ccc;                    /* Light border */
+    color: #1da1f2;                            /* Twitter blue */
+    padding: 6px 10px;                         /* Padding */
+    border-radius: 20px;                       /* Rounded corners */
+    font-size: 14px;                           /* Font size */
+    font-weight: bold;                         /* Bold text */
+    cursor: pointer;                          /* Pointer on hover */
+    display: inline-flex;                      /* Icon + text */
+    align-items: center;                       /* Align center */
+    margin-top: 10px;                          /* Space on top */
 }
 
-/* Like button hover effect */
 .like-button:hover {
-    text-decoration: underline; /* Underline text on hover */
+    background-color: #f0f0f0;                 /* Light gray on hover */
+    text-decoration: none;                     /* No underline on hover */
 }
 
 /* Like count styling */
 .like-count {
-    margin-left: 5px; /* Add space to the left */
-    font-size: 14px; /* Set font size */
-    color: #657786; /* Twitter-like light gray */
+    margin-left: 5px;                          /* Space between icon and text */
+    font-size: 14px;                           /* Font size */
+    color: #657786;                            /* Light gray text */
 }
 
-/* Button styling */
+/* ===============================
+   Comments Section
+================================= */
+.comments {
+    background-color: white;                   /* White background */
+    border-radius: 5px;                        /* Rounded corners */
+    padding: 10px;                             /* Padding inside */
+    margin-top: 10px;                          /* Space on top */
+}
+
+/* ===============================
+   Buttons
+================================= */
 button {
-    background-color: #1da1f2; /* Twitter blue */
-    color: white; /* White text color */
-    padding: 10px 15px; /* Add padding inside buttons */
-    border: none; /* Remove border */
-    border-radius: 20px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 14px; /* Set font size */
-    font-weight: bold; /* Bold text */
-    margin: 10px; /* Add space around buttons */;
+    background-color: #1da1f2;                 /* Twitter blue */
+    color: white;                              /* White text */
+    padding: 10px 15px;                        /* Padding */
+    border: none;                              /* No border */
+    border-radius: 20px;                       /* Rounded */
+    cursor: pointer;                           /* Pointer cursor */
+    font-size: 14px;                           /* Font size */
+    font-weight: bold;                         /* Bold */
+    margin: 10px;                              /* Margin */
 }
 
+button:hover {
+    background-color: #0d8ddf;                 /* Darker blue on hover */
+}
+
+/* Dark Mode Button */
 button.dark-mode {
-    background-color: #444; /* Dark button background */
-    color: #f5f5f5; /* Light text color */
+    background-color: #444;                    /* Dark button */
+    color: #f5f5f5;                            /* Light text */
 }
 
 button.dark-mode:hover {
-    background-color: #555; /* Slightly lighter on hover */
+    background-color: #555;                    /* Slightly lighter on hover */
 }
 
-/* Button hover effect */
-button:hover {
-    background-color: #0d8ddf; /* Darker blue on hover */
+/* ===============================
+   Links
+================================= */
+a {
+    text-decoration: none;                     /* No underline */
+    color: #1da1f2;                            /* Twitter blue */
+    font-weight: bold;                         /* Bold font */
 }
 
-/* Navigation link styling */
+a:hover {
+    text-decoration: underline;                /* Underline on hover */
+}
+
+a.dark-mode {
+    color: #1da1f2;                            /* Keep blue in dark mode */
+}
+
+a.dark-mode:hover {
+    text-decoration: underline;                /* Underline on hover */
+}
+
+/* ===============================
+   Headings
+================================= */
+h1, h2, h3 {
+    color: #333;                               /* Dark gray */
+    margin-bottom: 10px;                       /* Space below */
+}
+
+/* ===============================
+   Forms
+================================= */
+form {
+    margin-bottom: 20px;                       /* Space below */
+    padding: 15px;                             /* Padding */
+    background-color: #fff;                    /* White background */
+    border: 1px solid #ddd;                    /* Light border */
+    border-radius: 5px;                        /* Rounded corners */
+}
+
+/* Inputs and Textareas */
+input, textarea {
+    width: 100%;                               /* Full width */
+    margin: 5px 0;                             /* Space */
+    padding: 10px;                             /* Padding */
+    border: 1px solid #ccc;                    /* Light border */
+    border-radius: 5px;                        /* Rounded */
+    font-size: 14px;                            /* Font size */
+}
+
+/* ===============================
+   Tables
+================================= */
+table {
+    width: 100%;                               /* Full width */
+    border-collapse: collapse;                 /* No gaps */
+    margin-bottom: 20px;                       /* Space below */
+}
+
+th {
+    background-color: #007bff;                 /* Blue header */
+    color: white;                              /* White text */
+    padding: 10px;                             /* Padding */
+    text-align: left;                          /* Align left */
+}
+
+td {
+    padding: 10px;                             /* Padding */
+    border: 1px solid #ddd;                    /* Light border */
+}
+
+/* ===============================
+   Profile Images
+================================= */
+img {
+    border-radius: 50%;                        /* Circular image */
+    border: 2px solid #ddd;                    /* Light border */
+    padding: 5px;                              /* Padding inside */
+}
+
+/* ===============================
+   Dark Mode Toggle Button
+================================= */
+#darkModeToggle {
+    position: fixed;                           /* Fixed on screen */
+    top: 10px;
+    right: 20px;
+    z-index: 1000;                             /* On top of all elements */
+    background-color: #1da1f2;                 /* Twitter blue */
+    color: white;                              /* White text */
+    padding: 10px 15px;                        /* Padding */
+    border: none;                              /* No border */
+    border-radius: 20px;                       /* Rounded corners */
+    cursor: pointer;                           /* Pointer cursor */
+    font-size: 14px;                            /* Font size */
+    font-weight: bold;                          /* Bold font */
+}
+
+body.dark-mode #darkModeToggle {
+    background-color: #444;                    /* Dark mode toggle button */
+    color: #f5f5f5;                            /* Light text */
+}
+/*Style for index.php*/
+.container_index {
+    max-width: 800px;                          /* Limit width */
+    margin: 40px auto;                         /* Center horizontally */
+    padding: 20px;                             /* Inner spacing */
+    background-color: #f2f2f2;                 /* Light gray background */
+    border-radius: 10px;                       /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    display: flex;                             /* Use flexbox */
+    flex-direction: column;                    /* Arrange items vertically */
+    justify-content: center;                   /* Vertically center content */
+    align-items: center;                       /* Horizontally center content */
+    height: 100%;                              /* Make the container take full height */
+    box-sizing: border-box;                    /* Include padding in width calculation */
+}
+        h1 {
+            color: #333; /* Dark gray */
+        }
+        p {
+            font-size: 18px;/* Font size */
+            color: #555;/* Light gray text */
+        }
+        .buttons {
+            margin-top: 20px; /* Space above buttons */
+        }
+        a {
+            text-decoration: none; /* No underline */
+            padding: 10px 20px; 
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .signup {
+            background-color: #007bff;
+            color: white;
+        }
+        .login {
+            background-color: #28a745;
+            color: white;
+        }
+   
+ /*Style for Post.php*/
+ /* Container for posts and form */
+.container_post {
+    max-width: 800px; /* Limit width */
+    margin: 40px auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #f2f2f2; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Heading */
+h1 {
+    font-size: 24px; /* Font size */
+    color: #333; /* Dark gray text */
+    text-align: center; /* Center the heading */
+}
+
+/* Logout Link */
 a {
     text-decoration: none; /* Remove underline */
     color: #1da1f2; /* Twitter blue */
     font-weight: bold; /* Bold text */
+    display: inline-block; /* Inline block for spacing */
+    margin-top: 20px; /* Space from other elements */
+    text-align: center; /* Center the link */
 }
 
-a.dark-mode {
-    color: #1da1f2; /* Keep links blue */
+/* Post Form Styling */
+form {
+    margin-top: 20px; /* Space before the form */
+    text-align: center; /* Center form content */
 }
 
-a.dark-mode:hover {
+textarea {
+    width: 100%; /* Full width of the form */
+    padding: 10px; /* Padding for better readability */
+    margin-bottom: 10px; /* Space below the textarea */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    height: 150px; /* Height of the textarea */
+}
+
+button {
+    background-color: #1da1f2; /* Twitter blue */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: bold; /* Bold text */
+    font-size: 16px; /* Font size */
+}
+
+button:hover {
+    background-color: #0d8ddf; /* Darker blue on hover */
+}
+
+/* Post Display Section */
+.post {
+    background-color: white; /* White background for the post */
+    padding: 15px; /* Padding inside the post */
+    margin-bottom: 20px; /* Space between posts */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow around posts */
+}
+
+.post strong {
+    font-size: 18px; /* Larger font for author name */
+    color: #333; /* Dark text color */
+}
+
+.post p {
+    font-size: 16px; /* Font size for post content */
+    color: #555; /* Slightly lighter text for the post content */
+    margin-top: 10px; /* Space above the post content */
+}
+
+.post a {
+    text-decoration: none; /* Remove underline */
+    color: #1da1f2; /* Twitter blue */
+    font-weight: bold; /* Bold link */
+    margin-top: 10px; /* Space from the post content */
+    display: inline-block; /* Inline-block for spacing */
+}
+
+.post a:hover {
     text-decoration: underline; /* Underline on hover */
 }
-
-/* Navigation link hover effect */
-a:hover {
-    text-decoration: underline; /* Underline text on hover */
-}
-
-/* Headings styling */
-h1, h2, h3 {
-    color: #333; /* Dark gray color for headings */
-    margin-bottom: 10px; /* Add space below headings */
-}
-
-/* Form styling */
-form {
-    margin-bottom: 20px; /* Add space below forms */
-    padding: 15px; /* Add padding inside forms */
-    background-color: #fff; /* White background for forms */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-}
-
-/* Input and textarea styling */
-input, textarea {
-    width: 100%; /* Full width */
-    margin: 5px 0; /* Add space above and below */
-    padding: 10px; /* Add padding inside inputs */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Set font size */
-}
-
-/* Table styling */
-table {
-    width: 100%; /* Full width */
-    border-collapse: collapse; /* Remove gaps between table cells */
-    margin-bottom: 20px; /* Add space below tables */
-}
-
-/* Table header styling */
-th {
-    background-color: #007bff; /* Blue background for headers */
-    color: white; /* White text color */
-    padding: 10px; /* Add padding inside headers */
-    text-align: left; /* Align text to the left */
-}
-
-/* Table cell styling */
-td {
-    padding: 10px; /* Add padding inside cells */
-    border: 1px solid #ddd; /* Light gray border */
-}
-
-/* Profile picture styling */
-img {
-    border-radius: 50%; /* Make images circular */
-    border: 2px solid #ddd; /* Light gray border */
-    padding: 5px; /* Add padding inside the border */
-}
-
-/* Container for posts */
-.post {
-    background-color: #fff; /* White background */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 15px; /* Add padding inside posts */
-    margin-bottom: 15px; /* Add space below posts */
-}
-
-/* Comments section styling */
-.comments {
-    margin-top: 10px; /* Add space above comments */
-    padding-left: 15px; /* Indent comments */
-    border-left: 2px solid #ddd; /* Light gray left border. */
-}
+       

@@ -34,6 +34,7 @@ $result = $conn->query($query); // Execute the query
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
     <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
+    <div class="container"> <!-- Container for the posts -->
 
     <!-- Button to navigate to and from the dashboard -->
     <a href="dashboard.php">
@@ -69,6 +70,7 @@ $result = $conn->query($query); // Execute the query
             <button onclick="likePost(<?php echo $post['id']; ?>)">Like</button> <!-- Like button -->
         </div>
     <?php } ?>
+    </div> <!-- End of container -->
 
     <script>
     function likePost(postId) {

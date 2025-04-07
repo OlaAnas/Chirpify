@@ -52,10 +52,11 @@ $result = $stmt->get_result(); // Get the result set
 <html>
 <head>
     <title>Admin Panel - Chirpify</title>
+    <link rel="stylesheet" href="main.css">  <!-- Link to the CSS file -->
 </head>
 <body>
     <h2>Admin Panel</h2>
-    
+    <div class="container"> 
     <table border="1">
         <tr>
             <th>User ID</th>
@@ -79,5 +80,6 @@ $result = $stmt->get_result(); // Get the result set
 
     <br>
     <a href="dashboard.php">Back to Dashboard</a> <!-- Link to go back to the dashboard -->
+    </div>
 </body>
 </html>
