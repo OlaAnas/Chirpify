@@ -119,8 +119,11 @@ $result = $stmt->get_result(); // Get the result set
         <a href="admin_dashboard.php">Admin Dashboard</a>
     <?php endif; ?>
 
-    <form method="post"> <!-- Form to create a new post -->
-        <textarea name="content" placeholder="What's on your mind?" required></textarea><br> <!-- Textarea for post content -->
+    <!-- Removed duplicate posting form and kept a single unified form -->
+    <form method="post" action="upload_post.php" enctype="multipart/form-data"> <!-- Unified form for posting content and images -->
+        <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
+        <label for="post_image">Upload an image:</label>
+        <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
         <button type="submit">Post</button> <!-- Submit button -->
     </form>
 

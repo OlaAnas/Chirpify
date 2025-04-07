@@ -21,6 +21,10 @@ if (!$user || !$user["is_admin"]) { // If the user is not an admin
     exit; // Stop further execution
 }
 
+// Added CSRF token to the delete link
+$csrf_token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrf_token;
+
 // Handle user deletion
 if (isset($_GET["delete"])) {
     $user_id = $_GET["delete"]; // Get the user ID to delete
@@ -66,7 +70,7 @@ $result = $stmt->get_result(); // Get the result set
             <td><?php echo $user["is_admin"] ? "Admin" : "User"; ?></td> <!-- Display role -->
             <td>
                 <?php if (!$user["is_admin"]): ?> <!-- Only allow deletion of non-admin users -->
-                    <a href="admin.php?delete=<?php echo $user["id"]; ?>" onclick="return confirm('Are you sure?')">Delete</a> <!-- Delete link -->
+                    <a href="admin.php?delete=<?php echo $user["id"]; ?>&csrf_token=<?php echo $csrf_token; ?>" onclick="return confirm('Are you sure?')">Delete</a> <!-- Delete link -->
                 <?php endif; ?>
             </td>
         </tr>

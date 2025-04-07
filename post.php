@@ -18,8 +18,10 @@ $result = $conn->query($query); // Execute the query
 <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
 <a href="logout.php">Logout</a> <!-- Logout link -->
 
-<form method="post" action="post.php"> <!-- Form to create a new post -->
-    <textarea name="content" required></textarea> <!-- Textarea for post content -->
+<form method="post" action="upload_post.php" enctype="multipart/form-data"> <!-- Unified form for posting content and images -->
+    <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
+    <label for="post_image">Upload an image:</label>
+    <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
     <button type="submit">Post</button> <!-- Submit button -->
 </form>
 

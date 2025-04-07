@@ -9,6 +9,10 @@ if (!isset($_SESSION["user_id"])) { // Check if the user is logged in
 $user_id = $_SESSION["user_id"]; // Get the logged-in user's ID
 $post_id = $_POST["post_id"]; // Get the post ID from the form submission
 
+if (!filter_var($post_id, FILTER_VALIDATE_INT)) { // Validate post_id as an integer
+    die("Invalid post ID.");
+}
+
 // Fetch the post to check if it's owned by the current user
 $stmt = $conn->prepare("SELECT user_id FROM posts WHERE id = ?");
 $stmt->bind_param("i", $post_id); // Bind the post ID

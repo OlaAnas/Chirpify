@@ -44,6 +44,31 @@ session_start();
             background-color: #28a745;
             color: white;
         }
+        .features {
+            margin-top: 50px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .features h2 {
+            color: #007bff;
+        }
+        .features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features ul li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .forgot-password {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +80,21 @@ session_start();
     <div class="buttons">
         <a href="register.php" class="signup">Sign Up</a>
         <a href="login.php" class="login">Log In</a>
+    </div>
+
+    <div class="forgot-password">
+        <p>Forgot your password? <a href="forgot_password.php">Reset it here</a>.</p>
+    </div>
+
+    <div class="features">
+        <h2>Why Choose Chirpify?</h2>
+        <ul>
+            <li>🌟 Create and share your posts with the world.</li>
+            <li>❤️ Like and appreciate posts from others.</li>
+            <li>🔒 Secure platform with encrypted passwords.</li>
+            <li>🛠️ Edit your profile and customize your experience.</li>
+            <li>👥 Connect with a vibrant community of users.</li>
+        </ul>
     </div>
 </div>
 

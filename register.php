@@ -6,6 +6,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
     $email = trim($_POST["email"]); // Get and sanitize the email
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password for security
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email format
+        die("Invalid email format.");
+    }
+    if (strlen($username) < 3 || strlen($username) > 20) { // Validate username length
+        die("Username must be between 3 and 20 characters.");
+    }
+
     // Insert user into database
     $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $email, $password); // Bind parameters

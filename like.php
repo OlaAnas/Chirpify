@@ -14,6 +14,10 @@ if (!$post_id) { // Check if the post ID is valid
     die("Invalid request.");
 }
 
+if (!filter_var($post_id, FILTER_VALIDATE_INT)) { // Validate post_id as an integer
+    die("Invalid post ID.");
+}
+
 // Check if the user has already liked the post
 $stmt = $conn->prepare("SELECT id FROM likes WHERE user_id = ? AND post_id = ?");
 $stmt->bind_param("ii", $user_id, $post_id);

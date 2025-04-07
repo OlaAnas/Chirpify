@@ -12,6 +12,7 @@ if ($conn->connect_error) { // If there is a connection error
     die("Connection failed: " . $conn->connect_error); // Terminate the script and display the error
 }
 
-echo "Connected successfully!"; // Display a success message
+// Removed the echo statement to avoid exposing sensitive information
+// echo "Connected successfully!";
 ?>
 
