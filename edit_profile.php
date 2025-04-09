@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 <body>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
 <h2>Edit Profile</h2>
 <div class="container"> 

@@ -40,7 +40,7 @@ $result = $conn->query($query);
     </script>
 </head>
 <body>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 <h2>Admin Dashboard</h2>
 <div class="container"> 
 
