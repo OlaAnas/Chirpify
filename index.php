@@ -44,34 +44,43 @@ session_start();
             background-color: #28a745;
             color: white;
         }
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
+    <div class="container">
+        <h1>Welcome to Chirpify 🐦</h1>
+        <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>
+        
+        <div class="buttons">
+            <a href="register.php" class="signup">Sign Up</a>
+            <a href="login.php" class="login">Log In</a>
+        </div>
 
-<div class="container">
-    <h1>Welcome to Chirpify 🐦</h1>
-    <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>
-    
-    <div class="buttons">
-        <a href="register.php" class="signup">Sign Up</a>
-        <a href="login.php" class="login">Log In</a>
+        <div class="forgot-password">
+            <p>Forgot your password? <a href="forgot_password.php">Reset it here</a>.</p>
+        </div>
+
+        <div class="features">
+            <h2>Why Choose Chirpify?</h2>
+            <ul>
+                <li>🌟 Create and share your posts with the world.</li>
+                <li>❤️ Like and appreciate posts from others.</li>
+                <li>🔒 Secure platform with encrypted passwords.</li>
+                <li>🛠️ Edit your profile and customize your experience.</li>
+                <li>👥 Connect with a vibrant community of users.</li>
+            </ul>
+        </div>
     </div>
-
-    <div class="forgot-password">
-        <p>Forgot your password? <a href="forgot_password.php">Reset it here</a>.</p>
-    </div>
-
-    <div class="features">
-        <h2>Why Choose Chirpify?</h2>
-        <ul>
-            <li>🌟 Create and share your posts with the world.</li>
-            <li>❤️ Like and appreciate posts from others.</li>
-            <li>🔒 Secure platform with encrypted passwords.</li>
-            <li>🛠️ Edit your profile and customize your experience.</li>
-            <li>👥 Connect with a vibrant community of users.</li>
-        </ul>
-    </div>
-</div>
-
 </body>
 </html>

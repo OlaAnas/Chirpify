@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
     }
 
     // Insert user into database
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, 'uploads/profiles/default_user_image.jpg')");
     $stmt->bind_param("sss", $username, $email, $password); // Bind parameters
 
     if ($stmt->execute()) { // Execute the query

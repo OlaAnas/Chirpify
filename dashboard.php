@@ -135,7 +135,8 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button><!-- Dark mode toggle button -->
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
     <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
@@ -207,9 +208,6 @@ $result = $stmt->get_result(); // Get the result set
             </li>
         <?php endwhile; ?>
     </ul>
-
-    <br>
-    <a href="logout.php">Logout</a> <!-- Logout link -->
     </div> <!-- End of dashboard container -->
 </body>
 </html>

@@ -48,16 +48,17 @@ $stmt->close(); // Close the statement
     </script>
 </head>
 <body>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
     <div class="container"> 
 
-<h2><?php echo htmlspecialchars($user['username']); ?>'s Profile</h2> <!-- Display the user's username -->
+<h2><?php echo htmlspecialchars($user['username'] ?? 'Unknown User'); ?>'s Profile</h2> <!-- Display the user's username -->
 
 <!-- Display profile picture -->
-<?php if ($user_details['profile_picture']): ?>
-    <img src="<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
+<?php if ($user_details && $user_details['profile_picture'] && file_exists('uploads/profiles/' . $user_details['profile_picture'])): ?>
+    <img src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
 <?php else: ?>
-    <img src="default-avatar.jpg" alt="Default Profile Picture" width="150">
+    <img src="uploads/profiles/defult_user_image.jpg" alt="Default Profile Picture" width="150">
 <?php endif; ?>
 
 <!-- Form to upload a profile picture -->

@@ -30,7 +30,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 
         if (move_uploaded_file($file_tmp, $file_path)) {
             // Update the profile picture in the database
             $stmt = $conn->prepare("UPDATE users SET profile_picture = ? WHERE id = ?");
-            $stmt->bind_param("si", $file_path, $user_id);
+            $stmt->bind_param("si", $new_file_name, $user_id);
             $stmt->execute();
             $stmt->close();
 

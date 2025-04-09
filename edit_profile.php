@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 <body>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
 <h2>Edit Profile</h2>
@@ -75,6 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="password" name="password"><br><br>
 
     <button type="submit">Save Changes</button>
+</form>
+
+<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
+    <label for="profile_picture">Upload a Profile Picture:</label>
+    <input type="file" name="profile_picture" accept="image/*">
+    <button type="submit">Upload</button>
 </form>
 
 <br>

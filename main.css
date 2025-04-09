@@ -287,6 +287,29 @@ body.dark-mode #darkModeToggle {
     background-color: #444;                    /* Dark mode toggle button */
     color: #f5f5f5;                            /* Light text */
 }
+
+/* ===============================
+   Logout Button
+================================= */
+.logout-button {
+    position: fixed; /* Fixed position on the screen */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    background-color: #ff4d4d; /* Red background */
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 14px; /* Font size */
+    font-weight: bold; /* Bold text */
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.logout-button:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
 /*Style for index.php*/
 .container_index {
     max-width: 800px;                          /* Limit width */
@@ -419,4 +442,3 @@ button:hover {
 .post a:hover {
     text-decoration: underline; /* Underline on hover */
 }
-       

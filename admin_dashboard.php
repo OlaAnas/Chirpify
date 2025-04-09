@@ -40,6 +40,7 @@ $result = $conn->query($query);
     </script>
 </head>
 <body>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 <h2>Admin Dashboard</h2>
 <div class="container"> 
