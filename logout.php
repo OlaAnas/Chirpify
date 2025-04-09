@@ -4,3 +4,4 @@ session_destroy(); // Destroy all session data to log the user out
 header("Location: login.php"); // Redirect to the login page
 exit; // Stop further execution
 ?>
+<a href="logout.php" id="logout-link" class="logout-button">Logout</a> <!-- Added id -->

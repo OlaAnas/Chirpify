@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
 <body>
     <h2>Register</h2>
     <div class="container">
-    <form method="post"> <!-- Form to register a new user -->
+    <form method="post" id="register-form"> <!-- Added id -->
         <input type="text" name="username" placeholder="Username" required><br> <!-- Input for username -->
         <input type="email" name="email" placeholder="Email" required><br> <!-- Input for email -->
         <input type="password" name="password" placeholder="Password" required><br> <!-- Input for password -->

@@ -30,7 +30,7 @@ $result = $conn->query($query); // Execute the query
     </script>
 </head>
 
-<body>
+<body id="homePage">
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
 

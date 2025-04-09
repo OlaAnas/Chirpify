@@ -62,7 +62,7 @@ $stmt->close(); // Close the statement
 <?php endif; ?>
 
 <!-- Form to upload a profile picture -->
-<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
+<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form"> <!-- Added id -->
     <label for="profile_picture">Upload a Profile Picture:</label>
     <input type="file" name="profile_picture" accept="image/*" required>
     <button type="submit">Upload</button>

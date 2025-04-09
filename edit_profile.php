@@ -66,31 +66,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
 
 <h2>Edit Profile</h2>
-<div class="container"> 
+<div class="container" id="edit-profile-container"> 
 
-<form method="post">
-    <label>New Username:</label>
-    <input type="text" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
+<form method="post" id="edit-profile-form">
+    <label for="username">New Username:</label>
+    <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
 
-    <label>New Password (leave empty if no change):</label>
-    <input type="password" name="password"><br><br>
+    <label for="password">New Password (leave empty if no change):</label>
+    <input type="password" name="password" id="password"><br><br>
 
-    <button type="submit">Save Changes</button>
+    <button type="submit" id="save-changes-button">Save Changes</button>
 </form>
 
-<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
+<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
     <label for="profile_picture">Upload a Profile Picture:</label>
-    <input type="file" name="profile_picture" accept="image/*">
-    <button type="submit">Upload</button>
+    <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+    <button type="submit" id="upload-button">Upload</button>
 </form>
 
 <br>
-<a href="dashboard.php">Back to Dashboard</a>
+<a href="dashboard.php" id="dashboard-link">Back to Dashboard</a>
 
 <br>
 <!-- Button to navigate back to profile -->
-<a href="profile.php">
-    <button>Back to Profile</button>
+<a href="profile.php" id="back-to-profile-link">
+    <button id="back-to-profile-button">Back to Profile</button>
 </a>
 </div>
 

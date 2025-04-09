@@ -135,59 +135,59 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
-    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
-    <div class="container"> 
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
+    <a id="logout-button" href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
+    <div id="dashboard-container" class="container"> 
+    <h2 id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
     <!-- Admin Dashboard link -->
     <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
-        <p>You are logged in as an Admin.</p> <!-- Display admin status -->
-        <a href="admin_dashboard.php">Admin Dashboard</a> <!-- Link to admin dashboard -->
+        <p id="admin-status">You are logged in as an Admin.</p> <!-- Display admin status -->
+        <a id="admin-dashboard-link" href="admin_dashboard.php">Admin Dashboard</a> <!-- Link to admin dashboard -->
     <?php endif; ?>
 
     <!-- Unified form for posting content and images -->
-    <form method="post" action="dashboard.php" enctype="multipart/form-data">
-        <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
-        <label for="post_image">Upload an image:</label>
-        <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
-        <button type="submit">Post</button> <!-- Submit button -->
+    <form id="post-form" method="post" action="dashboard.php" enctype="multipart/form-data">
+        <textarea id="post-content" name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
+        <label for="post-image">Upload an image:</label>
+        <input id="post-image" type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
+        <button id="post-submit" type="submit">Post</button> <!-- Submit button -->
     </form>
 
-    <h2>All Posts</h2>
+    <h2 id="all-posts-title">All Posts</h2>
     <ul id="posts-list"> <!-- Added id="posts-list" -->
         <?php while ($post = $result->fetch_assoc()): ?> <!-- Loop through all posts -->
-            <li>
-                <p><strong><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
+            <li id="post-<?php echo $post['id']; ?>">
+                <p id="post-content-<?php echo $post['id']; ?>"><strong id="post-author-<?php echo $post['id']; ?>"><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
                 <?php if ($post['image_path']): ?> <!-- Check if the post has an image -->
-                    <img src="<?php echo htmlspecialchars($post['image_path']); ?>" width="300"> <!-- Display post image -->
+                    <img id="post-image-<?php echo $post['id']; ?>" src="<?php echo htmlspecialchars($post['image_path']); ?>" width="300"> <!-- Display post image -->
                 <?php endif; ?>
-                <small>Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
+                <small id="post-date-<?php echo $post['id']; ?>">Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
 
                 <!-- Like button -->
-                <form method="post" action="like.php"> <!-- Form to handle likes -->
+                <form id="like-form-<?php echo $post['id']; ?>" method="post" action="like.php"> <!-- Form to handle likes -->
                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
-                    <button type="submit">❤️ Like (<?php echo $post['like_count']; ?>)</button> <!-- Like button with like count -->
+                    <button id="like-button-<?php echo $post['id']; ?>" type="submit">❤️ Like (<?php echo $post['like_count']; ?>)</button> <!-- Like button with like count -->
                 </form>
 
                 <!-- Delete button (only for post owner) -->
                 <?php if ($_SESSION["user_id"] == $post["user_id"]): ?> <!-- Check if the logged-in user owns the post -->
-                    <form method="post"> <!-- Form to delete a post -->
+                    <form id="delete-form-<?php echo $post['id']; ?>" method="post"> <!-- Form to delete a post -->
                         <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
-                        <button type="submit" name="delete">🗑️ Delete</button> <!-- Delete button -->
+                        <button id="delete-button-<?php echo $post['id']; ?>" type="submit" name="delete">🗑️ Delete</button> <!-- Delete button -->
                     </form>
                 <?php endif; ?>
 
                 <!-- Comment form -->
-                <form method="post" action="comment.php"> <!-- Form to add a comment -->
+                <form id="comment-form-<?php echo $post['id']; ?>" method="post" action="comment.php"> <!-- Form to add a comment -->
                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
-                    <textarea name="comment" required placeholder="Write a comment..."></textarea><br> <!-- Textarea for comment -->
-                    <button type="submit">Post Comment</button> <!-- Submit button for comment -->
+                    <textarea id="comment-content-<?php echo $post['id']; ?>" name="comment" required placeholder="Write a comment..."></textarea><br> <!-- Textarea for comment -->
+                    <button id="comment-submit-<?php echo $post['id']; ?>" type="submit">Post Comment</button> <!-- Submit button for comment -->
                 </form>
 
                 <!-- Display comments for each post -->
-                <div class="comments">
-                <h4>Comments:</h4>
+                <div id="comments-container-<?php echo $post['id']; ?>" class="comments">
+                <h4 id="comments-title-<?php echo $post['id']; ?>">Comments:</h4>
                 <ul id="comments-list-<?php echo $post['id']; ?>"> <!-- Added id="comments-list-{post_id}" -->
                     <?php
                     $post_id = $post['id'];
@@ -198,9 +198,9 @@ $result = $stmt->get_result(); // Get the result set
                                       ORDER BY comments.created_at DESC"; // Query to fetch comments for the post
                     $comment_result = $conn->query($comment_query); // Execute the query
                     while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
-                        <li>
-                            <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p>
-                            <small>Commented on <?php echo $comment['created_at']; ?></small><br>
+                        <li id="comment-<?php echo $comment['id']; ?>">
+                            <p id="comment-content-<?php echo $comment['id']; ?>"><strong id="comment-author-<?php echo $comment['id']; ?>"><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p>
+                            <small id="comment-date-<?php echo $comment['id']; ?>">Commented on <?php echo $comment['created_at']; ?></small><br>
                         </li>
                     <?php endwhile; ?>
                 </ul>

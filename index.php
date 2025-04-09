@@ -10,7 +10,7 @@ session_start();
     <title>Welcome to Chirpify</title>
     <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
 </head>
-<body>
+<body id="index-page">
     <div class="container_index">
         <h1>Welcome to Chirpify 🐦</h1>
         <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>

@@ -56,7 +56,7 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 <body>
     <h2>Admin Panel</h2>
-    <div class="container"> 
+    <div id="admin-panel" class="container"> 
     <table border="1">
         <tr>
             <th>User ID</th>
