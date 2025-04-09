@@ -241,7 +241,7 @@ input, textarea {
 table {
     width: 100%;                               /* Full width */
     border-collapse: collapse;                 /* No gaps */
-    margin-bottom: 20px;                       /* Space below */
+    margin-bottom: 20px;                       /* Space below. */
 }
 
 th {
