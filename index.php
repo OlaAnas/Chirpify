@@ -11,7 +11,6 @@ session_start();
     <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
 </head>
 <body>
-    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <div class="container_index">
         <h1>Welcome to Chirpify 🐦</h1>
         <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>

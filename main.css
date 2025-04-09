@@ -325,7 +325,6 @@ body.dark-mode #darkModeToggle {
     height: 100%;                              /* Make the container take full height */
     box-sizing: border-box;                    /* Include padding in width calculation */
 }
-
  /*Style for Post.php*/
  /* Container for posts and form */
 .container_post {
