@@ -16,32 +16,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
-
-// Handle profile update
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_username = trim($_POST["username"]);
-    $new_password = trim($_POST["password"]);
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-    // Update username
-    if (!empty($new_username)) {
-        $stmt = $conn->prepare("UPDATE users SET username = ? WHERE id = ?");
-        $stmt->bind_param("si", $new_username, $user_id);
-        $stmt->execute();
-        $stmt->close();
-        $_SESSION["username"] = $new_username; // Update session
-    }
-
-    // Update password
-    if (!empty($new_password)) {
-        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
-        $stmt->bind_param("si", $hashed_password, $user_id);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    echo "Profile updated successfully!";
-}
 ?>
 
 <!DOCTYPE html>
@@ -67,16 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Edit Profile</h2>
 <div class="container"> 
-
-<form method="post">
-    <label>New Username:</label>
-    <input type="text" name="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
-
-    <label>New Password (leave empty if no change):</label>
-    <input type="password" name="password"><br><br>
-
-    <button type="submit">Save Changes</button>
-</form>
 
 <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
     <label for="profile_picture">Upload a Profile Picture:</label>

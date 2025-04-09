@@ -20,13 +20,6 @@ $result = $conn->query($query); // Execute the query
     <div class="container_post"> 
         <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
 
-        <form method="post" action="upload_post.php" enctype="multipart/form-data"> <!-- Unified form for posting content and images -->
-            <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
-            <label for="post_image">Upload an image:</label>
-            <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
-            <button type="submit">Post</button> <!-- Submit button -->
-        </form>
-
         <?php while ($post = $result->fetch_assoc()) { ?> <!-- Loop through all posts -->
             <div>
                 <strong><?php echo htmlspecialchars($post["username"]); ?></strong> <!-- Display the author's username -->

@@ -131,10 +131,25 @@ $result = $stmt->get_result(); // Get the result set
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
         }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.hamburger-menu .menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </head>
 
 <body>
+    <div class="hamburger-menu">
+        <button onclick="toggleMenu()">☰ Menu</button>
+        <div class="menu">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="home.php">Home</a>
+            <a href="profile.php">Profile</a>
+            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </div>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
     <div class="container"> 
@@ -146,12 +161,12 @@ $result = $stmt->get_result(); // Get the result set
         <a href="admin_dashboard.php">Admin Dashboard</a> <!-- Link to admin dashboard -->
     <?php endif; ?>
 
-    <!-- Unified form for posting content and images -->
+    <!-- Posting functionality remains here -->
     <form method="post" action="dashboard.php" enctype="multipart/form-data">
-        <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
+        <textarea name="content" placeholder="What's on your mind?"></textarea><br>
         <label for="post_image">Upload an image:</label>
-        <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
-        <button type="submit">Post</button> <!-- Submit button -->
+        <input type="file" name="post_image" accept="image/*"><br><br>
+        <button type="submit">Post</button>
     </form>
 
     <h2>All Posts</h2>
@@ -212,3 +227,4 @@ $result = $stmt->get_result(); // Get the result set
 </body>
 </html>
 <?php $stmt->close(); // Close the statement ?>
+``` 
