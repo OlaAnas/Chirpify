@@ -48,7 +48,7 @@ session_start();
 </head>
 <body>
 
-<div class="container_index">
+<div class="container">
     <h1>Welcome to Chirpify 🐦</h1>
     <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>
     

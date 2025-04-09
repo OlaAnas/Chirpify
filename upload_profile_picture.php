@@ -17,10 +17,12 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 
     if (in_array($file_type, $allowed_types)) {
         $file_name = $_FILES['profile_picture']['name'];
         $file_tmp = $_FILES['profile_picture']['tmp_name'];
-        $file_size = $_FILES['profile_picture']['size'];
 
         // Generate a unique file name and set the upload directory
-        $upload_dir = 'uploads/';
+        $upload_dir = 'uploads/profiles/';
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true); // Create the directory if it doesn't exist
+        }
         $new_file_name = uniqid() . '-' . basename($file_name);
         $file_path = $upload_dir . $new_file_name;
 
