@@ -325,21 +325,7 @@ body.dark-mode #darkModeToggle {
     height: 100%;                              /* Make the container take full height */
     box-sizing: border-box;                    /* Include padding in width calculation */
 }
-/* Style for the feature list (ul) */
-.feature-list {
-    list-style-type: none;              /* Remove default list bullets */
-    padding: 0;                         /* Remove padding */
-    margin: 0;                          /* Remove margin */
-}
 
-/* Style for each list item (li) */
-.feature-list li {
-    font-size: 16px;                    /* Set font size */
-    color: #333;                        /* Dark text color */
-    margin-bottom: 10px;                /* Space between each item */
-    display: flex;                      /* Flexbox layout for icon and text */
-    align-items: center;                /* Center the items vertically */
-}
  /*Style for Post.php*/
  /* Container for posts and form */
 .container_post {
