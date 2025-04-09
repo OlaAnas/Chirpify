@@ -10,45 +10,17 @@ if (!isset($_SESSION["user_id"])) {
 
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["content"]) || isset($_FILES["post_image"])) { 
+    if (isset($_POST["content"])) { 
         // Handle new post submission
-        $content = trim($_POST["content"] ?? ""); // Get and sanitize the post content
+        $content = trim($_POST["content"]); // Get and sanitize the post content
         $user_id = $_SESSION["user_id"]; // Get the logged-in user's ID
-        $image_path = null;
 
-        // Check if a file has been uploaded
-        if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] == 0) {
-            $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-            $file_type = $_FILES['post_image']['type'];
-
-            // Validate file type
-            if (in_array($file_type, $allowed_types)) {
-                $file_name = $_FILES['post_image']['name'];
-                $file_tmp = $_FILES['post_image']['tmp_name'];
-
-                // Generate a unique file name and set the upload directory
-                $upload_dir = 'uploads/posts/';
-                if (!is_dir($upload_dir)) {
-                    mkdir($upload_dir, 0755, true); // Create the directory if it doesn't exist
-                }
-                $new_file_name = uniqid() . '-' . basename($file_name);
-                $image_path = $upload_dir . $new_file_name;
-
-                // Move the uploaded file to the uploads directory
-                if (!move_uploaded_file($file_tmp, $image_path)) {
-                    die("Error uploading the image.");
-                }
-            } else {
-                die("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
-            }
-        }
-
-        // Insert the new post into the database
-        if (!empty($content) || $image_path) { // Ensure either content or image is provided
-            $stmt = $conn->prepare("INSERT INTO posts (user_id, content, image_path) VALUES (?, ?, ?)");
-            $stmt->bind_param("iss", $user_id, $content, $image_path);
-            $stmt->execute();
-            $stmt->close();
+        if (!empty($content)) { // Ensure the content is not empty
+            // Insert the new post into the database
+            $stmt = $conn->prepare("INSERT INTO posts (user_id, content) VALUES (?, ?)");
+            $stmt->bind_param("is", $user_id, $content); // Bind parameters
+            $stmt->execute(); // Execute the query
+            $stmt->close(); // Close the statement
             header("Location: dashboard.php"); // Redirect to refresh the page
             exit; // Stop further execution
         }
@@ -75,14 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $post_id = $_POST["post_id"]; // Get the post ID to delete
         $user_id = $_SESSION["user_id"]; // Get the logged-in user's ID
 
-        // Check if the post belongs to the logged-in user or if the user is an admin
-        $check_post = $conn->prepare("SELECT * FROM posts WHERE id = ?");
-        $check_post->bind_param("i", $post_id); // Bind parameters
+        // Check if the post belongs to the logged-in user
+        $check_post = $conn->prepare("SELECT * FROM posts WHERE id = ? AND user_id = ?");
+        $check_post->bind_param("ii", $post_id, $user_id); // Bind parameters
         $check_post->execute(); // Execute the query
         $result = $check_post->get_result(); // Get the result
-        $post = $result->fetch_assoc();
 
-        if ($post && ($post["user_id"] == $user_id || $_SESSION["is_admin"])) { // Allow if owner or admin
+        if ($result->num_rows > 0) { // If the post belongs to the user
             // Delete likes associated with the post
             $delete_likes = $conn->prepare("DELETE FROM likes WHERE post_id = ?");
             $delete_likes->bind_param("i", $post_id); // Bind parameters
@@ -108,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Fetch all posts along with their like counts
-$stmt = $conn->prepare("SELECT posts.id, posts.content, posts.image_path, posts.created_at, users.username, posts.user_id,
+$stmt = $conn->prepare("SELECT posts.id, posts.content, posts.created_at, users.username, posts.user_id,
                         (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS like_count
                         FROM posts 
                         JOIN users ON posts.user_id = users.id 
@@ -134,7 +105,7 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button><!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button><!-- Dark mode toggle button -->
     <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
@@ -148,8 +119,8 @@ $result = $stmt->get_result(); // Get the result set
         <a href="admin_dashboard.php">Admin Dashboard</a>
     <?php endif; ?>
 
-    <!-- Unified form for posting content and images -->
-    <form method="post" action="dashboard.php" enctype="multipart/form-data">
+    <!-- Removed duplicate posting form and kept a single unified form -->
+    <form method="post" action="upload_post.php" enctype="multipart/form-data"> <!-- Unified form for posting content and images -->
         <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
         <label for="post_image">Upload an image:</label>
         <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
@@ -161,9 +132,6 @@ $result = $stmt->get_result(); // Get the result set
         <?php while ($post = $result->fetch_assoc()): ?> <!-- Loop through all posts -->
             <li>
                 <p><strong><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
-                <?php if ($post['image_path']): ?> <!-- Check if the post has an image -->
-                    <img src="<?php echo htmlspecialchars($post['image_path']); ?>" width="300"> <!-- Display post image -->
-                <?php endif; ?>
                 <small>Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
 
                 <!-- Like button -->
@@ -173,7 +141,7 @@ $result = $stmt->get_result(); // Get the result set
                 </form>
 
                 <!-- Delete button (only for post owner) -->
-                <?php if ($_SESSION["user_id"] == $post["user_id"] || $_SESSION["is_admin"]): ?> <!-- Check if the logged-in user owns the post or is an admin -->
+                <?php if ($_SESSION["user_id"] == $post["user_id"]): ?> <!-- Check if the logged-in user owns the post -->
                     <form method="post"> <!-- Form to delete a post -->
                         <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
                         <button type="submit" name="delete">🗑️ Delete</button> <!-- Delete button -->
@@ -181,11 +149,9 @@ $result = $stmt->get_result(); // Get the result set
                 <?php endif; ?>
 
                 <!-- Comment form -->
-                <form method="post" action="comment.php" enctype="multipart/form-data"> <!-- Form to add a comment -->
+                <form method="post" action="comment.php"> <!-- Form to add a comment -->
                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> <!-- Hidden input for post ID -->
                     <textarea name="comment" required placeholder="Write a comment..."></textarea><br> <!-- Textarea for comment -->
-                    <label for="comment_image">Upload an image:</label>
-                    <input type="file" name="comment_image" accept="image/*"><br><br> <!-- File input for comment image -->
                     <button type="submit">Post Comment</button> <!-- Submit button for comment -->
                 </form>
 
@@ -194,7 +160,7 @@ $result = $stmt->get_result(); // Get the result set
                 <h4>Comments:</h4>
                 <?php
                 $post_id = $post['id'];
-                $comment_query = "SELECT comments.comment_text, comments.image_path, users.username, comments.created_at
+                $comment_query = "SELECT comments.comment_text, users.username, comments.created_at
                                   FROM comments 
                                   JOIN users ON comments.user_id = users.id
                                   WHERE comments.post_id = $post_id
@@ -202,9 +168,6 @@ $result = $stmt->get_result(); // Get the result set
                 $comment_result = $conn->query($comment_query); // Execute the query
                 while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
                     <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p> <!-- Display comment content -->
-                    <?php if ($comment['image_path']): ?> <!-- Check if the comment has an image -->
-                        <img src="<?php echo htmlspecialchars($comment['image_path']); ?>" width="300"> <!-- Display comment image -->
-                    <?php endif; ?>
                     <small>Commented on <?php echo $comment['created_at']; ?></small><br> <!-- Display comment creation date -->
                 <?php endwhile; ?>
                 </div>
