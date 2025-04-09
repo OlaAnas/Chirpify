@@ -10,19 +10,49 @@ if (!isset($_SESSION["user_id"])) {
 
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["content"])) { 
+    if (isset($_POST["content"]) || isset($_FILES["post_image"])) { 
         // Handle new post submission
-        $content = trim($_POST["content"]); // Get and sanitize the post content
+        $content = trim($_POST["content"] ?? ""); // Get and sanitize the post content
         $user_id = $_SESSION["user_id"]; // Get the logged-in user's ID
+        $image_path = null;
 
-        if (!empty($content)) { // Ensure the content is not empty
-            // Insert the new post into the database
-            $stmt = $conn->prepare("INSERT INTO posts (user_id, content) VALUES (?, ?)");
-            $stmt->bind_param("is", $user_id, $content); // Bind parameters
-            $stmt->execute(); // Execute the query
-            $stmt->close(); // Close the statement
+        // Check if a file has been uploaded
+        if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] == 0) {
+            $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+            $file_type = $_FILES['post_image']['type'];
+
+            // Validate file type
+            if (in_array($file_type, $allowed_types)) {
+                $file_name = $_FILES['post_image']['name'];
+                $file_tmp = $_FILES['post_image']['tmp_name'];
+
+                // Generate a unique file name and set the upload directory
+                $upload_dir = 'uploads/posts/';
+                if (!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true); // Create the directory if it doesn't exist
+                }
+                $new_file_name = uniqid() . '-' . basename($file_name);
+                $image_path = $upload_dir . $new_file_name;
+
+                // Move the uploaded file to the uploads directory
+                if (!move_uploaded_file($file_tmp, $image_path)) {
+                    die("Error uploading the image.");
+                }
+            } else {
+                die("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
+            }
+        }
+
+        // Insert the new post into the database
+        if (!empty($content) || $image_path) { // Ensure either content or image is provided
+            $stmt = $conn->prepare("INSERT INTO posts (user_id, content, image_path) VALUES (?, ?, ?)");
+            $stmt->bind_param("iss", $user_id, $content, $image_path);
+            $stmt->execute();
+            $stmt->close();
             header("Location: dashboard.php"); // Redirect to refresh the page
             exit; // Stop further execution
+        } else {
+            echo "Error: You must provide either text or an image to post.";
         }
     } elseif (isset($_POST["like"])) {
         // Handle post like
@@ -79,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Fetch all posts along with their like counts
-$stmt = $conn->prepare("SELECT posts.id, posts.content, posts.created_at, users.username, posts.user_id,
+$stmt = $conn->prepare("SELECT posts.id, posts.content, posts.image_path, posts.created_at, users.username, posts.user_id,
                         (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS like_count
                         FROM posts 
                         JOIN users ON posts.user_id = users.id 
@@ -119,8 +149,8 @@ $result = $stmt->get_result(); // Get the result set
         <a href="admin_dashboard.php">Admin Dashboard</a>
     <?php endif; ?>
 
-    <!-- Removed duplicate posting form and kept a single unified form -->
-    <form method="post" action="upload_post.php" enctype="multipart/form-data"> <!-- Unified form for posting content and images -->
+    <!-- Unified form for posting content and images -->
+    <form method="post" action="dashboard.php" enctype="multipart/form-data">
         <textarea name="content" placeholder="What's on your mind?"></textarea><br> <!-- Optional content field -->
         <label for="post_image">Upload an image:</label>
         <input type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
@@ -132,6 +162,9 @@ $result = $stmt->get_result(); // Get the result set
         <?php while ($post = $result->fetch_assoc()): ?> <!-- Loop through all posts -->
             <li>
                 <p><strong><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
+                <?php if ($post['image_path']): ?> <!-- Check if the post has an image -->
+                    <img src="<?php echo htmlspecialchars($post['image_path']); ?>" width="300"> <!-- Display post image -->
+                <?php endif; ?>
                 <small>Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
 
                 <!-- Like button -->

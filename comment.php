@@ -8,7 +8,10 @@ if (!isset($_SESSION["user_id"])) {
 
 $user_id = $_SESSION["user_id"];
 $post_id = $_POST["post_id"];
-$comment = $_POST["comment"];
+$comment = trim($_POST["comment"] ?? ""); // Get and sanitize the comment text
+if (empty($comment) && !isset($_FILES['comment_image'])) {
+    die("You must provide either a comment or an image.");
+}
 
 // Check if a file has been uploaded
 if (isset($_FILES['comment_image']) && $_FILES['comment_image']['error'] == 0) {

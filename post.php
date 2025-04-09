@@ -29,7 +29,10 @@ $result = $conn->query($query); // Execute the query
 <?php while ($post = $result->fetch_assoc()) { ?> <!-- Loop through all posts -->
     <div>
         <strong><?php echo htmlspecialchars($post["username"]); ?></strong> <!-- Display the author's username -->
-        <p><?php echo htmlspecialchars($post["content"]); ?></p> <!-- Display the post content -->
+        <p><?php echo htmlspecialchars($post["content"] ?: "No content provided."); ?></p> <!-- Display the post content -->
+        <?php if (!empty($post["image_path"])): ?> <!-- Check if the post has an image -->
+            <img src="<?php echo htmlspecialchars($post["image_path"]); ?>" width="300"> <!-- Display post image -->
+        <?php endif; ?>
         <a href="like.php?post_id=<?php echo $post['id']; ?>">Like</a> <!-- Link to like the post -->
     </div>
 <?php } ?>
