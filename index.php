@@ -26,7 +26,7 @@ session_start();
 
         <div class="features">
             <h2>Why Choose Chirpify?</h2>
-            <ul>
+            <ul id="features-list"> <!-- Re-added id="features-list" -->
                 <li>🌟 Create and share your posts with the world.</li>
                 <li>❤️ Like and appreciate posts from others.</li>
                 <li>🔒 Secure platform with encrypted passwords.</li>

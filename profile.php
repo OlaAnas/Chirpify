@@ -69,7 +69,7 @@ $stmt->close(); // Close the statement
 </form>
 
 <h3>Recent Posts</h3>
-<ul>
+<ul id="profile-posts-list"> <!-- Already has id -->
     <?php while ($post = $posts->fetch_assoc()): ?> <!-- Loop through all posts -->
         <li>
             <p><?php echo htmlspecialchars($post['content']); ?></p> <!-- Display the post content -->

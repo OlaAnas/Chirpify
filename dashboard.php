@@ -155,7 +155,7 @@ $result = $stmt->get_result(); // Get the result set
     </form>
 
     <h2>All Posts</h2>
-    <ul>
+    <ul id="posts-list"> <!-- Added id="posts-list" -->
         <?php while ($post = $result->fetch_assoc()): ?> <!-- Loop through all posts -->
             <li>
                 <p><strong><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
@@ -188,18 +188,22 @@ $result = $stmt->get_result(); // Get the result set
                 <!-- Display comments for each post -->
                 <div class="comments">
                 <h4>Comments:</h4>
-                <?php
-                $post_id = $post['id'];
-                $comment_query = "SELECT comments.comment_text, users.username, comments.created_at
-                                  FROM comments 
-                                  JOIN users ON comments.user_id = users.id
-                                  WHERE comments.post_id = $post_id
-                                  ORDER BY comments.created_at DESC"; // Query to fetch comments for the post
-                $comment_result = $conn->query($comment_query); // Execute the query
-                while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
-                    <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p> <!-- Display comment content -->
-                    <small>Commented on <?php echo $comment['created_at']; ?></small><br> <!-- Display comment creation date -->
-                <?php endwhile; ?>
+                <ul id="comments-list-<?php echo $post['id']; ?>"> <!-- Added id="comments-list-{post_id}" -->
+                    <?php
+                    $post_id = $post['id'];
+                    $comment_query = "SELECT comments.comment_text, users.username, comments.created_at
+                                      FROM comments 
+                                      JOIN users ON comments.user_id = users.id
+                                      WHERE comments.post_id = $post_id
+                                      ORDER BY comments.created_at DESC"; // Query to fetch comments for the post
+                    $comment_result = $conn->query($comment_query); // Execute the query
+                    while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
+                        <li>
+                            <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p>
+                            <small>Commented on <?php echo $comment['created_at']; ?></small><br>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
                 </div>
             </li>
         <?php endwhile; ?>

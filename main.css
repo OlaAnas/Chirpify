@@ -325,8 +325,9 @@ body.dark-mode #darkModeToggle {
     height: 100%;                              /* Make the container take full height */
     box-sizing: border-box;                    /* Include padding in width calculation */
 }
- /*Style for Post.php*/
- /* Container for posts and form */
+
+/*Style for Post.php*/
+/* Container for posts and form */
 .container_post {
     max-width: 800px; /* Limit width */
     margin: 40px auto; /* Center horizontally */
@@ -415,4 +416,23 @@ button:hover {
 
 .post a:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+/* Unordered List Styling */
+
+
+/* Add styles specific to #profile-posts-list */
+#profile-posts-list {
+    list-style-type: square; /* Use square bullets */
+    padding-left: 20px; /* Add padding to the left */
+    margin-top: 10px; /* Add margin above the list */
+    color: #333; /* Dark gray text color */
+    font-size: 16px; /* Font size for list items */
+}
+
+/* Add styles specific to #features-list */
+#features-list {
+    list-style-type: none; /* Remove list dots */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
 }
