@@ -136,7 +136,7 @@ $result = $stmt->get_result(); // Get the result set
 
 <body>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
-    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
     <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
