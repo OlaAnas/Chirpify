@@ -45,9 +45,25 @@ $stmt->close(); // Close the statement
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
         }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.hamburger-menu .menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </head>
 <body>
+    <div class="hamburger-menu">
+        <button onclick="toggleMenu()">☰ Menu</button>
+        <div class="menu">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="home.php">Home</a>
+            <a href="profile.php">Profile</a>
+            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </div>
+
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
     <div class="container"> 

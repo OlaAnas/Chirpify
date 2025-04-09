@@ -27,15 +27,40 @@ $result = $conn->query($query); // Execute the query
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
         }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.hamburger-menu .menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </head>
 
 <body id="homePage">
+<body>
+    <div class="hamburger-menu">
+        <button onclick="toggleMenu()">☰ Menu</button>
+        <div class="menu">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="home.php">Home</a>
+            <a href="profile.php">Profile</a>
+            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </div>
+
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
 
     <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
     <div class="container"> <!-- Container for the posts -->
+
+    <!-- Posting functionality remains here -->
+    <form method="post" action="home.php" enctype="multipart/form-data">
+        <textarea name="content" placeholder="What's on your mind?"></textarea><br>
+        <label for="post_image">Upload an image:</label>
+        <input type="file" name="post_image" accept="image/*"><br><br>
+        <button type="submit">Post</button>
+    </form>
 
     <!-- Button to navigate to and from the dashboard -->
     <a href="dashboard.php">

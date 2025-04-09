@@ -16,32 +16,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
-
-// Handle profile update
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_username = trim($_POST["username"]);
-    $new_password = trim($_POST["password"]);
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-    // Update username
-    if (!empty($new_username)) {
-        $stmt = $conn->prepare("UPDATE users SET username = ? WHERE id = ?");
-        $stmt->bind_param("si", $new_username, $user_id);
-        $stmt->execute();
-        $stmt->close();
-        $_SESSION["username"] = $new_username; // Update session
-    }
-
-    // Update password
-    if (!empty($new_password)) {
-        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
-        $stmt->bind_param("si", $hashed_password, $user_id);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    echo "Profile updated successfully!";
-}
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
+<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
     <label for="profile_picture">Upload a Profile Picture:</label>
     <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
     <button type="submit" id="upload-button">Upload</button>

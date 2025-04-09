@@ -131,6 +131,11 @@ $result = $stmt->get_result(); // Get the result set
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
         }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.hamburger-menu .menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </head>
 
@@ -139,6 +144,20 @@ $result = $stmt->get_result(); // Get the result set
     <button id="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
     <div id="dashboard-container" class="container"> 
     <h2 id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
+    <div class="hamburger-menu">
+        <button onclick="toggleMenu()">☰ Menu</button>
+        <div class="menu">
+            <a href="dashboard.php">Dashboard</a>
+            <a href="home.php">Home</a>
+            <a href="profile.php">Profile</a>
+            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <a href="logout.php" class="logout-button">Logout</a>
+        </div>
+    </div>
+    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
+    <div class="container"> 
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
     <!-- Admin Dashboard link -->
     <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
@@ -152,6 +171,12 @@ $result = $stmt->get_result(); // Get the result set
         <label for="post-image">Upload an image:</label>
         <input id="post-image" type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
         <button id="post-submit" type="submit">Post</button> <!-- Submit button -->
+    <!-- Posting functionality remains here -->
+    <form method="post" action="dashboard.php" enctype="multipart/form-data">
+        <textarea name="content" placeholder="What's on your mind?"></textarea><br>
+        <label for="post_image">Upload an image:</label>
+        <input type="file" name="post_image" accept="image/*"><br><br>
+        <button type="submit">Post</button>
     </form>
 
     <h2 id="all-posts-title">All Posts</h2>
@@ -212,3 +237,4 @@ $result = $stmt->get_result(); // Get the result set
 </body>
 </html>
 <?php $stmt->close(); // Close the statement ?>
+``` 
