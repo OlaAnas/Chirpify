@@ -140,14 +140,10 @@ $result = $stmt->get_result(); // Get the result set
     <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
-    <!-- Button to navigate to profile -->
-    <a href="profile.php">
-        <button>Go to Profile</button>
-    </a>
-
     <!-- Admin Dashboard link -->
     <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
-        <a href="admin_dashboard.php">Admin Dashboard</a>
+        <p>You are logged in as an Admin.</p> <!-- Display admin status -->
+        <a href="admin_dashboard.php">Admin Dashboard</a> <!-- Link to admin dashboard -->
     <?php endif; ?>
 
     <!-- Unified form for posting content and images -->

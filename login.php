@@ -8,20 +8,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"]; // Get user input password
 
     // Prepare SQL statement to prevent SQL injection
-    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, username, password, is_admin FROM users WHERE email = ?");
     $stmt->bind_param("s", $email); // Bind the email parameter
     $stmt->execute(); // Execute the query
     $stmt->store_result(); // Store the result
 
     // Check if any user is found
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $username, $hashed_password); // Bind the retrieved columns
+        $stmt->bind_result($id, $username, $hashed_password, $is_admin); // Bind the retrieved columns
         $stmt->fetch(); // Fetch the result
 
         // Verify the password
         if (password_verify($password, $hashed_password)) { // Check if password matches hashed password
             $_SESSION["user_id"] = $id; // Store user ID in session
             $_SESSION["username"] = $username; // Store username in session
+            $_SESSION["is_admin"] = $is_admin; // Store admin status in session
             header("Location: dashboard.php"); // Redirect to dashboard
             exit; // Exit script
         } else {
