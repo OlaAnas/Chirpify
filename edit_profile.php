@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
 <h2>Edit Profile</h2>
 <div class="container"> 

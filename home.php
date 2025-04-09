@@ -33,6 +33,7 @@ $result = $conn->query($query); // Execute the query
 <body>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
 
     <h1>Welcome, <?php echo $_SESSION["username"]; ?>!</h1> <!-- Display the logged-in user's username -->
     <div class="container"> <!-- Container for the posts -->

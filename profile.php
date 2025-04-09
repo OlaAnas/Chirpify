@@ -50,6 +50,7 @@ $stmt->close(); // Close the statement
 <body>
     <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
+    <button id=darkModeToggle onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Dark mode toggle button -->
     <div class="container"> 
 
 <h2><?php echo htmlspecialchars($user['username'] ?? 'Unknown User'); ?>'s Profile</h2> <!-- Display the user's username -->
