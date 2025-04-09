@@ -19,7 +19,7 @@ body.dark-mode {
    Dashboard Container
 ================================= */
 .container {
-    max-width: 800px;                          /* Limit width */
+    max-width: 80%;                          /* Limit width */
     margin: 40px auto;                         /* Center horizontally */
     padding: 20px;                             /* Inner spacing */
     background-color: #f2f2f2;                 /* Light gray background */
@@ -55,7 +55,7 @@ header.dark-mode {
    Main Container
 ================================= */
 .container {
-    max-width: 900px;                          /* Limit width */
+    max-width: 80%;                          /* Limit width */
     margin: 20px auto;                         /* Center on page */
     background-color: #f2f2f2;                 /* Light gray background */
     border: 1px solid #ddd;                    /* Subtle border */
@@ -162,11 +162,11 @@ header.dark-mode {
 button {
     background-color: #1da1f2;                 /* Twitter blue */
     color: white;                              /* White text */
-    padding: 10px 15px;                        /* Padding */
+    padding: 10px 20px;                        /* Padding */
     border: none;                              /* No border */
-    border-radius: 20px;                       /* Rounded */
+    border-radius: 5px;                        /* Rounded */
     cursor: pointer;                           /* Pointer cursor */
-    font-size: 14px;                           /* Font size */
+    font-size: 1rem;                           /* Font size */
     font-weight: bold;                         /* Bold */
     margin: 10px;                              /* Margin */
 }
@@ -212,6 +212,12 @@ a.dark-mode:hover {
 h1, h2, h3 {
     color: #333;                               /* Dark gray */
     margin-bottom: 10px;                       /* Space below */
+}
+
+h1 {
+    font-size: 2.5rem;                         /* Font size */
+    color: #333;                               /* Dark text color */
+    text-align: center;                        /* Center the heading */
 }
 
 /* ===============================
@@ -375,7 +381,7 @@ body.dark-mode .hamburger-menu .menu a:hover {
 
 /*Style for index.php*/
 .container_index {
-    max-width: 800px;                          /* Limit width */
+    max-width: 70%;                          /* Limit width */
     margin: 40px auto;                         /* Center horizontally */
     padding: 20px;                             /* Inner spacing */
     background-color: #f2f2f2;                 /* Light gray background */
@@ -385,7 +391,7 @@ body.dark-mode .hamburger-menu .menu a:hover {
     flex-direction: column;                    /* Arrange items vertically */
     justify-content: center;                   /* Vertically center content */
     align-items: center;                       /* Horizontally center content */
-    height: 100%;                              /* Make the container take full height */
+    height: auto;                              /* Make the container take full height */
     box-sizing: border-box;                    /* Include padding in width calculation */
 }
 
@@ -402,7 +408,7 @@ body.dark-mode .hamburger-menu .menu a:hover {
 
 /* Heading */
 h1 {
-    font-size: 24px; /* Font size */
+    font-size: 2.5rem; /* Font size */
     color: #333; /* Dark gray text */
     text-align: center; /* Center the heading */
 }
@@ -441,7 +447,7 @@ button {
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
     font-weight: bold; /* Bold text */
-    font-size: 16px; /* Font size */
+    font-size: 1rem; /* Font size */
 }
 
 button:hover {
@@ -482,7 +488,11 @@ button:hover {
 }
 
 /* Unordered List Styling */
-
+ul {
+    list-style-type: none; /* Remove points */
+    padding: 0;
+    margin: 0;
+}
 
 /* Add styles specific to #profile-posts-list */
 #profile-posts-list {
@@ -498,4 +508,87 @@ button:hover {
     list-style-type: none; /* Remove list dots */
     padding: 0; /* Remove default padding */
     margin: 0; /* Remove default margin */
+}
+
+/* Add specific styles for each PHP page using their IDs */
+
+/* Style for index.php */
+#index-page {
+    background-color: #e6ecf0; /* Light gray background */
+    color: #14171a; /* Dark text color */
+    text-align: center; /* Center content */
+    padding: 20px; /* Padding */
+}
+
+/* Style for login.php */
+#login-form {
+    max-width: 400px; /* Limit width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Style for register.php */
+#register-form {
+    max-width: 400px; /* Limit width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Style for profile.php */
+#profile-posts-list {
+    list-style-type: square; /* Use square bullets */
+    padding-left: 20px; /* Add padding to the left */
+    margin-top: 10px; /* Add margin above the list */
+    color: #333; /* Dark gray text color */
+    font-size: 16px; /* Font size for list items */
+}
+
+/* Style for dashboard.php */
+#dashboard-container {
+    max-width: 800px; /* Limit width */
+    margin: 40px auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #f2f2f2; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Style for admin_dashboard.php */
+#admin-dashboard {
+    background-color: #e6ecf0; /* Light gray background */
+    color: #14171a; /* Dark text color */
+    padding: 20px; /* Padding */
+}
+
+/* Style for edit_profile.php */
+#edit-profile-container {
+    max-width: 600px; /* Limit width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Style for home.php */
+#homePage {
+    background-color: #e6ecf0; /* Light gray background */
+    color: #14171a; /* Dark text color */
+    padding: 20px; /* Padding */
+}
+
+/* Style for forgot_password.php */
+#forgot-password-form {
+    max-width: 400px; /* Limit width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Inner spacing */
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
