@@ -122,7 +122,7 @@ $result = $stmt->get_result(); // Get the result set
 <html>
 <head>
     <title>Dashboard - Chirpify</title>
-    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+    <link rel="stylesheet"  href="main.css"> <!-- Link to the main CSS file -->
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
@@ -149,12 +149,11 @@ $result = $stmt->get_result(); // Get the result set
             <a href="dashboard.php">Dashboard</a>
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
-            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-            <a href="logout.php" class="logout-button">Logout</a>
         </div>
     </div>
-    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
-    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
+
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button outside the navbar -->
+    
     <div class="container"> 
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
 
@@ -170,12 +169,6 @@ $result = $stmt->get_result(); // Get the result set
         <label for="post-image">Upload an image:</label>
         <input id="post-image" type="file" name="post_image" accept="image/*"><br><br> <!-- File input for image upload -->
         <button id="post-submit" type="submit">Post</button> <!-- Submit button -->
-    <!-- Posting functionality remains here -->
-    <form method="post" action="dashboard.php" enctype="multipart/form-data">
-        <textarea name="content" placeholder="What's on your mind?"></textarea><br>
-        <label for="post_image">Upload an image:</label>
-        <input type="file" name="post_image" accept="image/*"><br><br>
-        <button type="submit">Post</button>
     </form>
 
     <h2 id="all-posts-title">All Posts</h2>
@@ -236,4 +229,3 @@ $result = $stmt->get_result(); // Get the result set
 </body>
 </html>
 <?php $stmt->close(); // Close the statement ?>
-``` 

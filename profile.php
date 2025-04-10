@@ -1,33 +1,42 @@
 <?php
-session_start(); // Start the session to manage user authentication
-include 'config.php'; // Include the database configuration file
+session_start();
+include 'config.php';
 
-// Get user ID from URL or session
-$user_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['user_id']; // Use the ID from the URL if provided, otherwise use the logged-in user's ID
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['user_id'];
 
 // Fetch user info
 $stmt = $conn->prepare("SELECT id, username FROM users WHERE id = ?");
-$stmt->bind_param("i", $user_id); // Bind the user ID
-$stmt->execute(); // Execute the query
-$result = $stmt->get_result(); // Get the result
-$user = $result->fetch_assoc(); // Fetch the user data
-$stmt->close(); // Close the statement
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+
+if (!$user) {
+    echo "<p>User not found.</p>";
+    exit;
+}
 
 // Fetch user's posts
 $stmt = $conn->prepare("SELECT id, content, created_at FROM posts WHERE user_id = ? ORDER BY created_at DESC");
-$stmt->bind_param("i", $user_id); // Bind the user ID
-$stmt->execute(); // Execute the query
-$posts = $stmt->get_result(); // Get the result set
-$stmt->close(); // Close the statement
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$posts = $stmt->get_result();
+$stmt->close();
 
-// Fetch profile picture and username
+// Fetch profile picture
 $query = "SELECT username, profile_picture FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $user_id); // Bind the user ID
-$stmt->execute(); // Execute the query
-$result = $stmt->get_result(); // Get the result
-$user_details = $result->fetch_assoc(); // Fetch the user details
-$stmt->close(); // Close the statement
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user_details = $result->fetch_assoc();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +45,7 @@ $stmt->close(); // Close the statement
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($user['username']); ?>'s Profile - Chirpify</title>
-    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+    <link rel="stylesheet" href="main.css">
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
@@ -52,56 +61,53 @@ $stmt->close(); // Close the statement
         }
     </script>
 </head>
-<body>
+<body id="profile-page">
     <div class="hamburger-menu">
         <button onclick="toggleMenu()">☰ Menu</button>
         <div class="menu">
             <a href="dashboard.php">Dashboard</a>
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
-            <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
             <a href="logout.php" class="logout-button">Logout</a>
         </div>
     </div>
+    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
-    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
-    <div class="container"> 
+    <div class="container">
+        <h2><?php echo htmlspecialchars($user['username']); ?>'s Profile</h2>
 
-<h2><?php echo htmlspecialchars($user['username'] ?? 'Unknown User'); ?>'s Profile</h2> <!-- Display the user's username -->
+        <!-- Display profile picture -->
+        <?php if ($user_details && $user_details['profile_picture'] && file_exists('uploads/profiles/' . $user_details['profile_picture'])): ?>
+            <img src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
+        <?php else: ?>
+            <img src="uploads/profiles/default_user_image.jpg" alt="Default Profile Picture" width="150">
+        <?php endif; ?>
 
-<!-- Display profile picture -->
-<?php if ($user_details && $user_details['profile_picture'] && file_exists('uploads/profiles/' . $user_details['profile_picture'])): ?>
-    <img src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
-<?php else: ?>
-    <img src="uploads/profiles/defult_user_image.jpg" alt="Default Profile Picture" width="150">
-<?php endif; ?>
+        <!-- Show upload form only if it's your own profile -->
+        <?php if ($_SESSION['user_id'] === $user_id): ?>
+            <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
+                <label for="profile_picture">Upload a Profile Picture:</label>
+                <input type="file" name="profile_picture" accept="image/*" required>
+                <button type="submit">Upload</button>
+            </form>
+        <?php endif; ?>
 
-<!-- Form to upload a profile picture -->
-<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form"> <!-- Added id -->
-    <label for="profile_picture">Upload a Profile Picture:</label>
-    <input type="file" name="profile_picture" accept="image/*" required>
-    <button type="submit">Upload</button>
-</form>
+        <h3>Recent Posts</h3>
+        <ul id="profile-posts-list">
+            <?php while ($post = $posts->fetch_assoc()): ?>
+                <li>
+                    <p><?php echo htmlspecialchars($post['content']); ?></p>
+                    <small>Posted on <?php echo $post['created_at']; ?></small>
+                </li>
+            <?php endwhile; ?>
+        </ul>
 
-<h3>Recent Posts</h3>
-<ul id="profile-posts-list"> <!-- Already has id -->
-    <?php while ($post = $posts->fetch_assoc()): ?> <!-- Loop through all posts -->
-        <li>
-            <p><?php echo htmlspecialchars($post['content']); ?></p> <!-- Display the post content -->
-            <small>Posted on <?php echo $post['created_at']; ?></small> <!-- Display the post creation date -->
-        </li>
-    <?php endwhile; ?>
-</ul>
+        <br>
+        <a href="dashboard.php">Back to Dashboard</a>
 
-<br>
-<a href="dashboard.php">Back to Dashboard</a> <!-- Link to go back to the dashboard -->
-
-<br>
-<!-- Button to navigate to edit profile -->
-<a href="edit_profile.php">
-    <button>Edit Profile</button>
-</a>
-</div> <!-- End of container -->
+        <?php if ($_SESSION['user_id'] === $user_id): ?>
+            <br><a href="edit_profile.php"><button>Edit Profile</button></a>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

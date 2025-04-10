@@ -11,27 +11,27 @@ session_start();
     <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
 </head>
 <body id="index-page">
-    <div class="container_index">
-        <h1>Welcome to Chirpify 🐦</h1>
-        <p>Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>
+    <div class="container_index" id="container-index">
+        <h1 id="welcome-heading">Welcome to Chirpify 🐦</h1>
+        <p id="intro-text">Chirpify is the best place to share your thoughts, like posts, and connect with others.</p>
         
-        <div class="buttons">
-            <a href="register.php" class="signup">Sign Up</a>
-            <a href="login.php" class="login">Log In</a>
+        <div class="buttons" id="buttons">
+            <a href="register.php" class="signup" id="signup-button">Sign Up</a>
+            <a href="login.php" class="login" id="login-button">Log In</a>
         </div>
 
-        <div class="forgot-password">
-            <p>Forgot your password? <a href="forgot_password.php">Reset it here</a>.</p>
+        <div class="forgot-password" id="forgot-password">
+            <p>Forgot your password? <a href="forgot_password.php" id="reset-password-link">Reset it here</a>.</p>
         </div>
 
-        <div class="features">
-            <h2>Why Choose Chirpify?</h2>
-            <ul id="features-list"> <!-- Re-added id="features-list" -->
-                <li>🌟 Create and share your posts with the world.</li>
-                <li>❤️ Like and appreciate posts from others.</li>
-                <li>🔒 Secure platform with encrypted passwords.</li>
-                <li>🛠️ Edit your profile and customize your experience.</li>
-                <li>👥 Connect with a vibrant community of users.</li>
+        <div class="features" id="features-section">
+            <h2 id="features-heading">Why Choose Chirpify?</h2>
+            <ul id="features-list">
+                <li id="feature-posting">🌟 Create and share your posts with the world.</li>
+                <li id="feature-liking">❤️ Like and appreciate posts from others.</li>
+                <li id="feature-security">🔒 Secure platform with encrypted passwords.</li>
+                <li id="feature-editing">🛠️ Edit your profile and customize your experience.</li>
+                <li id="feature-community">👥 Connect with a vibrant community of users.</li>
             </ul>
         </div>
     </div>

@@ -1,594 +1,943 @@
-/* ===============================
-   General Body Styling
-================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;            /* Set the font family */
-    margin: 0;                                 /* Remove default margin */
-    padding: 0;                                /* Remove default padding */
-    background-color: #e6ecf0;                 /* Light gray background */
-    color: #14171a;                            /* Dark text color */
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+/* Index Page Styles */
+
+.container_index {
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Mode Styling */
-body.dark-mode {
-    background-color: #1c1c1c;                 /* Dark background */
-    color: #f5f5f5;                            /* Light text color */
+#welcome-heading {
+    font-size: 2.5rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
 }
 
-/* ===============================
-   Dashboard Container
-================================= */
+#intro-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.buttons {
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.signup, .login {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.signup {
+    background-color: #4A90E2;
+    color: white;
+}
+
+.signup:hover {
+    background-color: #357ABD;
+}
+
+.login {
+    background-color: #34C759;
+    color: white;
+}
+
+.login:hover {
+    background-color: #28A745;
+}
+
+.forgot-password {
+    margin-bottom: 20px;
+}
+
+#reset-password-link {
+    color: #4A90E2;
+    text-decoration: underline;
+}
+
+#reset-password-link:hover {
+    color: #357ABD;
+}
+
+.features {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#features-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#features-list {
+    list-style-type: none;
+}
+
+#features-list li {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 15px 0;
+}
+
+#features-list li i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+/* Index Page Styles End */
+
+/* dashboard Page Styles */
 .container {
-    max-width: 80%;                          /* Limit width */
-    margin: 40px auto;                         /* Center horizontally */
-    padding: 20px;                             /* Inner spacing */
-    background-color: #f2f2f2;                 /* Light gray background */
-    border-radius: 10px;                       /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Dark Mode for Dashboard */
-body.dark-mode .dashboard-container {
-    background-color: #2c2c2c;                 /* Dark background */
-    box-shadow: none;                          /* Remove shadow in dark mode */
+#dashboard-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* ===============================
-   Header Styling
-================================= */
-header {
-    background-color: rgb(29, 161, 242);       /* Twitter blue */
-    color: white;                              /* White text */
-    padding: 10px 20px;                        /* Padding */
-    text-align: center;                        /* Centered text */
-    font-size: 24px;                           /* Large text */
-    font-weight: bold;                         /* Bold font */
+h2 {
+    font-size: 1.8rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
 }
 
-/* Dark Mode for Header */
-header.dark-mode {
-    background-color: #333;                    /* Dark background */
-    color: #f5f5f5;                            /* Light text color */
+#posts-list {
+    list-style-type: none;
 }
 
-/* ===============================
-   Main Container
-================================= */
-.container {
-    max-width: 80%;                          /* Limit width */
-    margin: 20px auto;                         /* Center on page */
-    background-color: #f2f2f2;                 /* Light gray background */
-    border: 1px solid #ddd;                    /* Subtle border */
-    border-radius: 8px;                        /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-    overflow: hidden;                          /* Prevent overflow */
+#posts-list li {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Mode for Main Container */
-.container.dark-mode {
-    background-color: #2c2c2c;                 /* Dark background */
-    border: 1px solid #444;                    /* Darker border */
+#post-content {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-/* ===============================
-   Post Styling
-================================= */
-.post {
-    background-color: white;                   /* White background for posts */
-    border: 1px solid #ddd;                    /* Light border */
-    border-radius: 5px;                        /* Rounded corners */
-    padding: 15px;                             /* Padding inside post */
-    margin: 15px;                              /* Margin between posts */
+#post-author {
+    font-weight: bold;
+    color: #4A90E2;
 }
 
-/* Last post without bottom border */
-.post:last-child {
-    border-bottom: none;                       /* Remove last border */
+#post-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 15px 0;
 }
 
-/* ===============================
-   Post Header
-================================= */
-.post-header {
-    display: flex;                             /* Flex layout */
-    align-items: center;                       /* Vertical center */
-    margin-bottom: 10px;                       /* Space below */
+#post-date {
+    font-size: 0.9rem;
+    color: #999;
 }
 
-.post-header img {
-    width: 40px;                               /* Profile image size */
-    height: 40px;
-    border-radius: 50%;                        /* Circular */
-    margin-right: 10px;                        /* Space to right */
+form {
+    margin-bottom: 20px;
 }
 
-.post-header .username {
-    font-weight: bold;                         /* Bold username */
-    color: #14171a;                            /* Dark text */
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
 }
 
-/* ===============================
-   Post Content
-================================= */
-.post-content {
-    font-size: 16px;                           /* Font size */
-    line-height: 1.5;                          /* Line spacing */
-    color: #14171a;                            /* Dark text */
-    margin-bottom: 10px;                       /* Space below */
-}
-
-/* ===============================
-   Like Button
-================================= */
-.like-button {
-    background-color: white;                   /* White background */
-    border: 1px solid #ccc;                    /* Light border */
-    color: #1da1f2;                            /* Twitter blue */
-    padding: 6px 10px;                         /* Padding */
-    border-radius: 20px;                       /* Rounded corners */
-    font-size: 14px;                           /* Font size */
-    font-weight: bold;                         /* Bold text */
-    cursor: pointer;                          /* Pointer on hover */
-    display: inline-flex;                      /* Icon + text */
-    align-items: center;                       /* Align center */
-    margin-top: 10px;                          /* Space on top */
-}
-
-.like-button:hover {
-    background-color: #f0f0f0;                 /* Light gray on hover */
-    text-decoration: none;                     /* No underline on hover */
-}
-
-/* Like count styling */
-.like-count {
-    margin-left: 5px;                          /* Space between icon and text */
-    font-size: 14px;                           /* Font size */
-    color: #657786;                            /* Light gray text */
-}
-
-/* ===============================
-   Comments Section
-================================= */
-.comments {
-    background-color: white;                   /* White background */
-    border-radius: 5px;                        /* Rounded corners */
-    padding: 10px;                             /* Padding inside */
-    margin-top: 10px;                          /* Space on top */
-}
-
-/* ===============================
-   Buttons
-================================= */
 button {
-    background-color: #1da1f2;                 /* Twitter blue */
-    color: white;                              /* White text */
-    padding: 10px 20px;                        /* Padding */
-    border: none;                              /* No border */
-    border-radius: 5px;                        /* Rounded */
-    cursor: pointer;                           /* Pointer cursor */
-    font-size: 1rem;                           /* Font size */
-    font-weight: bold;                         /* Bold */
-    margin: 10px;                              /* Margin */
+    padding: 10px 15px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0d8ddf;                 /* Darker blue on hover */
+    background-color: #357ABD;
 }
 
-/* Dark Mode Button */
-button.dark-mode {
-    background-color: #444;                    /* Dark button */
-    color: #f5f5f5;                            /* Light text */
+#like-button {
+    background-color: #FF6347;
+    margin-top: 10px;
 }
 
-button.dark-mode:hover {
-    background-color: #555;                    /* Slightly lighter on hover */
+#like-button:hover {
+    background-color: #FF4500;
 }
 
-/* ===============================
-   Links
-================================= */
-a {
-    text-decoration: none;                     /* No underline */
-    color: #1da1f2;                            /* Twitter blue */
-    font-weight: bold;                         /* Bold font */
-}
-
-a:hover {
-    text-decoration: underline;                /* Underline on hover */
-}
-
-a.dark-mode {
-    color: #1da1f2;                            /* Keep blue in dark mode */
-}
-
-a.dark-mode:hover {
-    text-decoration: underline;                /* Underline on hover */
-}
-
-/* ===============================
-   Headings
-================================= */
-h1, h2, h3 {
-    color: #333;                               /* Dark gray */
-    margin-bottom: 10px;                       /* Space below */
-}
-
-h1 {
-    font-size: 2.5rem;                         /* Font size */
-    color: #333;                               /* Dark text color */
-    text-align: center;                        /* Center the heading */
-}
-
-/* ===============================
-   Forms
-================================= */
-form {
-    margin-bottom: 20px;                       /* Space below */
-    padding: 15px;                             /* Padding */
-    background-color: #fff;                    /* White background */
-    border: 1px solid #ddd;                    /* Light border */
-    border-radius: 5px;                        /* Rounded corners */
-}
-
-/* Inputs and Textareas */
-input, textarea {
-    width: 100%;                               /* Full width */
-    margin: 5px 0;                             /* Space */
-    padding: 10px;                             /* Padding */
-    border: 1px solid #ccc;                    /* Light border */
-    border-radius: 5px;                        /* Rounded */
-    font-size: 14px;                            /* Font size */
-}
-
-/* ===============================
-   Tables
-================================= */
-table {
-    width: 100%;                               /* Full width */
-    border-collapse: collapse;                 /* No gaps */
-    margin-bottom: 20px;                       /* Space below. */
-}
-
-th {
-    background-color: #007bff;                 /* Blue header */
-    color: white;                              /* White text */
-    padding: 10px;                             /* Padding */
-    text-align: left;                          /* Align left */
-}
-
-td {
-    padding: 10px;                             /* Padding */
-    border: 1px solid #ddd;                    /* Light border */
-}
-
-/* ===============================
-   Profile Images
-================================= */
-img {
-    border-radius: 50%;                        /* Circular image */
-    border: 2px solid #ddd;                    /* Light border */
-    padding: 5px;                              /* Padding inside */
-}
-
-/* ===============================
-   Dark Mode Toggle Button
-================================= */
-#darkModeToggle {
-    position: fixed;                           /* Fixed on screen */
-    top: 10px;
-    right: 20px;
-    z-index: 1000;                             /* On top of all elements */
-    background-color: #1da1f2;                 /* Twitter blue */
-    color: white;                              /* White text */
-    padding: 10px 15px;                        /* Padding */
-    border: none;                              /* No border */
-    border-radius: 20px;                       /* Rounded corners */
-    cursor: pointer;                           /* Pointer cursor */
-    font-size: 14px;                            /* Font size */
-    font-weight: bold;                          /* Bold font */
-}
-
-body.dark-mode #darkModeToggle {
-    background-color: #444;                    /* Dark mode toggle button */
-    color: #f5f5f5;                            /* Light text */
-}
-
-/* ===============================
-   Logout Button
-================================= */
-.logout-button {
-    position: fixed; /* Fixed position on the screen */
-    top: 10px; /* Distance from the top */
-    left: 10px; /* Distance from the left */
-    background-color: #ff4d4d; /* Red background */
-    color: white; /* White text */
-    padding: 10px 15px; /* Padding */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 14px; /* Font size */
-    font-weight: bold; /* Bold text */
-    z-index: 1000; /* Ensure it stays on top */
-}
-
-.logout-button:hover {
-    background-color: #e60000; /* Darker red on hover */
-}
-
-/* ===============================
-   Hamburger Menu
-================================= */
-.hamburger-menu {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-}
-
-.hamburger-menu button {
-    background-color: #1da1f2;
+#delete-button {
+    background-color: #E74C3C;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+}
+
+#delete-button:hover {
+    background-color: #C0392B;
+}
+
+#comment-submit {
+    background-color: #28A745;
+}
+
+#comment-submit:hover {
+    background-color: #218838;
+}
+
+/* Comment styling */
+.comments {
+    margin-top: 20px;
+    padding-left: 20px;
+    border-top: 1px solid #ddd;
+}
+
+#comments-list {
+    list-style-type: none;
+}
+
+#comments-list li {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+#comment-content {
+    font-size: 1rem;
+    color: #555;
+}
+
+#comment-author {
+    font-weight: bold;
+    color: #4A90E2;
+}
+
+#comment-date {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* Admin Status */
+#admin-status {
+    color: #ffbf00;
     font-weight: bold;
 }
 
-.hamburger-menu button:hover {
-    background-color: #0d8ddf;
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode #dashboard-container {
+    background-color: #444;
+    color: #f4f7f6;
+}
+
+body.dark-mode #posts-list li {
+    background-color: #555;
+    color: #f4f7f6;
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode button:hover {
+    background-color: #666;
+}
+
+body.dark-mode .comments {
+    background-color: #555;
+}
+
+body.dark-mode #comments-list li {
+    background-color: #666;
+}
+
+body.dark-mode #comments-list li:hover {
+    background-color: #777;
+}
+
+/* Hamburger Menu */
+.hamburger-menu button {
+    font-size: 1.5rem;
+    padding: 10px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .hamburger-menu .menu {
     display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    width: 200px;
+    margin-top: 10px;
 }
 
 .hamburger-menu .menu a {
     display: block;
     padding: 10px;
-    color: #1da1f2;
+    background-color: #f4f7f6;
+    color: #333;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .hamburger-menu .menu a:hover {
-    background-color: #f0f0f0;
+    background-color: #4A90E2;
+    color: white;
 }
 
-body.dark-mode .hamburger-menu .menu {
-    background-color: #2c2c2c;
-    border: 1px solid #444;
+#logout-button {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    color: #FF6347;
+    margin-bottom: 20px;
 }
 
-body.dark-mode .hamburger-menu .menu a {
-    color: #f5f5f5;
+#logout-button:hover {
+    color: #C0392B;
 }
 
-body.dark-mode .hamburger-menu .menu a:hover {
+#darkModeToggle {
     background-color: #444;
+    color: #f4f7f6;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/*Style for index.php*/
-.container_index {
-    max-width: 70%;                          /* Limit width */
-    margin: 40px auto;                         /* Center horizontally */
-    padding: 20px;                             /* Inner spacing */
-    background-color: #f2f2f2;                 /* Light gray background */
-    border-radius: 10px;                       /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-    display: flex;                             /* Use flexbox */
-    flex-direction: column;                    /* Arrange items vertically */
-    justify-content: center;                   /* Vertically center content */
-    align-items: center;                       /* Horizontally center content */
-    height: auto;                              /* Make the container take full height */
-    box-sizing: border-box;                    /* Include padding in width calculation */
+#darkModeToggle:hover {
+    background-color: #666;
+}
+/*dashboard Page Styles End*/
+
+/*Home Page Styles*/
+#home-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+body.dark-mode {
+    background-color: #333;
+    color: #f4f7f6;
 }
 
-/*Style for Post.php*/
-/* Container for posts and form */
-.container_post {
-    max-width: 800px; /* Limit width */
-    margin: 40px auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #f2f2f2; /* Light gray background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+body.dark-mode #post-container {
+    background-color: #444;
+    color: #f4f7f6;
 }
 
-/* Heading */
-h1 {
-    font-size: 2.5rem; /* Font size */
-    color: #333; /* Dark gray text */
-    text-align: center; /* Center the heading */
+body.dark-mode #posts-list li {
+    background-color: #555;
+    color: #f4f7f6;
 }
 
-/* Logout Link */
-a {
-    text-decoration: none; /* Remove underline */
-    color: #1da1f2; /* Twitter blue */
-    font-weight: bold; /* Bold text */
-    display: inline-block; /* Inline block for spacing */
-    margin-top: 20px; /* Space from other elements */
-    text-align: center; /* Center the link */
+body.dark-mode button {
+    background-color: #333;
+    color: #f4f7f6;
 }
 
-/* Post Form Styling */
+body.dark-mode button:hover {
+    background-color: #666;
+}
+
+body.dark-mode .comments {
+    background-color: #555;
+}
+
+body.dark-mode #comments-list li {
+    background-color: #666;
+}
+
+body.dark-mode #comments-list li:hover {
+    background-color: #777;
+}
+
+/* Home Page Styles End */
+#profile-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+/* Header */
+h2 {
+    font-size: 2rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Profile Picture */
+img {
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
 form {
-    margin-top: 20px; /* Space before the form */
-    text-align: center; /* Center form content */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-textarea {
-    width: 100%; /* Full width of the form */
-    padding: 10px; /* Padding for better readability */
-    margin-bottom: 10px; /* Space below the textarea */
-    border: 1px solid #ccc; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    height: 150px; /* Height of the textarea */
+form label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
 }
 
+form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form input[type="file"]:focus {
+    border-color: #4A90E2;
+}
+
+/* Buttons */
 button {
-    background-color: #1da1f2; /* Twitter blue */
-    color: white; /* White text */
-    padding: 10px 20px; /* Padding */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-weight: bold; /* Bold text */
-    font-size: 1rem; /* Font size */
+    padding: 12px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #0d8ddf; /* Darker blue on hover */
+    background-color: #357ABD;
 }
 
-/* Post Display Section */
-.post {
-    background-color: white; /* White background for the post */
-    padding: 15px; /* Padding inside the post */
-    margin-bottom: 20px; /* Space between posts */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow around posts */
+button:active {
+    transform: scale(0.98);
 }
 
-.post strong {
-    font-size: 18px; /* Larger font for author name */
-    color: #333; /* Dark text color */
-}
-
-.post p {
-    font-size: 16px; /* Font size for post content */
-    color: #555; /* Slightly lighter text for the post content */
-    margin-top: 10px; /* Space above the post content */
-}
-
-.post a {
-    text-decoration: none; /* Remove underline */
-    color: #1da1f2; /* Twitter blue */
-    font-weight: bold; /* Bold link */
-    margin-top: 10px; /* Space from the post content */
-    display: inline-block; /* Inline-block for spacing */
-}
-
-.post a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-
-/* Unordered List Styling */
-ul {
-    list-style-type: none; /* Remove points */
+/* Profile Posts List */
+#profile-posts-list {
+    list-style-type: none;
     padding: 0;
-    margin: 0;
 }
 
-/* Add styles specific to #profile-posts-list */
-#profile-posts-list {
-    list-style-type: square; /* Use square bullets */
-    padding-left: 20px; /* Add padding to the left */
-    margin-top: 10px; /* Add margin above the list */
-    color: #333; /* Dark gray text color */
-    font-size: 16px; /* Font size for list items */
+#profile-posts-list li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Add styles specific to #features-list */
-#features-list {
-    list-style-type: none; /* Remove list dots */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+#profile-posts-list li small {
+    font-size: 0.9rem;
+    color: #999;
 }
 
-/* Add specific styles for each PHP page using their IDs */
-
-/* Style for index.php */
-#index-page {
-    background-color: #e6ecf0; /* Light gray background */
-    color: #14171a; /* Dark text color */
-    text-align: center; /* Center content */
-    padding: 20px; /* Padding */
+/* Links */
+a {
+    color: #4A90E2;
+    text-decoration: none;
 }
 
-/* Style for login.php */
-#login-form {
-    max-width: 400px; /* Limit width */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #fff; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+a:hover {
+    text-decoration: underline;
 }
 
-/* Style for register.php */
-#register-form {
-    max-width: 400px; /* Limit width */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #fff; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+/* Hamburger Menu */
+.hamburger-menu button {
+    font-size: 1.5rem;
+    padding: 10px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Style for profile.php */
-#profile-posts-list {
-    list-style-type: square; /* Use square bullets */
-    padding-left: 20px; /* Add padding to the left */
-    margin-top: 10px; /* Add margin above the list */
-    color: #333; /* Dark gray text color */
-    font-size: 16px; /* Font size for list items */
+.hamburger-menu .menu {
+    display: none;
+    margin-top: 10px;
 }
 
-/* Style for dashboard.php */
-#dashboard-container {
-    max-width: 800px; /* Limit width */
-    margin: 40px auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #f2f2f2; /* Light gray background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+.hamburger-menu .menu a {
+    display: block;
+    padding: 10px;
+    background-color: #f4f7f6;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* Style for admin_dashboard.php */
-#admin-dashboard {
-    background-color: #e6ecf0; /* Light gray background */
-    color: #14171a; /* Dark text color */
-    padding: 20px; /* Padding */
+.hamburger-menu .menu a:hover {
+    background-color: #4A90E2;
+    color: white;
 }
 
-/* Style for edit_profile.php */
-#edit-profile-container {
-    max-width: 600px; /* Limit width */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #fff; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f7f6;
 }
 
-/* Style for home.php */
-#homePage {
-    background-color: #e6ecf0; /* Light gray background */
-    color: #14171a; /* Dark text color */
-    padding: 20px; /* Padding */
+body.dark-mode .container {
+    background-color: #444;
+    color: #f4f7f6;
 }
 
-/* Style for forgot_password.php */
-#forgot-password-form {
-    max-width: 400px; /* Limit width */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px; /* Inner spacing */
-    background-color: #fff; /* White background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+body.dark-mode button {
+    background-color: #333;
+    color: #f4f7f6;
 }
+
+body.dark-mode button:hover {
+    background-color: #666;
+}
+
+body.dark-mode #profile-posts-list li {
+    background-color: #555;
+    color: #f4f7f6;
+}
+
+body.dark-mode a {
+    color: #4A90E2;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+/* Toggle Button */
+button#darkModeToggle {
+    background-color: #444;
+    color: #f4f7f6;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button#darkModeToggle:hover {
+    background-color: #666;
+}
+/* Profile Page Styles End */
+/*edit profile page styles*/
+#edit-profile-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+/* Header */
+h2 {
+    font-size: 2rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+form label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #4A90E2;
+}
+
+form button {
+    padding: 12px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background-color: #357ABD;
+}
+
+form button:active {
+    transform: scale(0.98);
+}
+
+/* Logout Button */
+#logout-button {
+    background-color: #E94E77;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout-button:hover {
+    background-color: #D63D63;
+}
+
+#logout-button:active {
+    transform: scale(0.98);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode .container {
+    background-color: #444;
+    color: #f4f7f6;
+}
+
+body.dark-mode form button {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode form button:hover {
+    background-color: #666;
+}
+
+body.dark-mode #edit-profile-container {
+    background-color: #555;
+    color: #f4f7f6;
+}
+
+body.dark-mode a {
+    color: #4A90E2;
+}
+
+body.dark-mode a:hover {
+    color: #fff;
+}
+
+/* Toggle Dark Mode Button */
+#dark-mode-toggle {
+    background-color: #444;
+    color: #f4f7f6;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #666;
+}
+
+#dark-mode-toggle:active {
+    transform: scale(0.98);
+}
+
+/* Back to Dashboard and Profile Links */
+#dashboard-link,
+#back-to-profile-link {
+    font-size: 1rem;
+    color: #4A90E2;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+#dashboard-link:hover,
+#back-to-profile-link:hover {
+    text-decoration: underline;
+}
+
+/* Button Back to Profile */
+#back-to-profile-button {
+    padding: 12px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#back-to-profile-button:hover {
+    background-color: #357ABD;
+}
+
+#back-to-profile-button:active {
+    transform: scale(0.98);
+}
+/* Edit Profile Page Styles End */
+/*forgot password page styles*/
+#forgot-password-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+/* Form Elements */
+form label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+form input[type="email"]:focus {
+    border-color: #4A90E2;
+}
+
+form button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background-color: #357ABD;
+}
+
+form button:active {
+    transform: scale(0.98);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode #forgot-password-page {
+    background-color: #333;
+}
+
+body.dark-mode #forgot-password-form {
+    background-color: #444;
+    color: #f4f7f6;
+}
+
+body.dark-mode form input[type="email"] {
+    background-color: #555;
+    border: 1px solid #666;
+    color: #f4f7f6;
+}
+
+body.dark-mode form input[type="email"]:focus {
+    border-color: #4A90E2;
+}
+
+body.dark-mode form button {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode form button:hover {
+    background-color: #666;
+}
+/* Forgot Password Link */
+/*login page styles*/
+#login-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+/*login styles end*/
+/*post page styles*/
+#post-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+#welcome-message {
+    font-size: 2rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+}
+.post-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.post-card strong {
+    font-size: 1.2rem;
+    color: #4A90E2;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.post-card p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.post-card img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.post-card a {
+    font-size: 1rem;
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+.post-card a:hover {
+    text-decoration: underline;
+}
+/*post styles end*/
+/*register page styles*/
+#register-page{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+

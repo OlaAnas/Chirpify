@@ -1,29 +1,53 @@
 <?php
 include 'config.php'; // Include the database configuration file
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
-    $username = trim($_POST["username"]); // Get and sanitize the username
-    $email = trim($_POST["email"]); // Get and sanitize the email
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password for security
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password_raw = $_POST["password"];
+    $profile_picture = 'default_user_image.jpg'; // Default profile picture filename
+    $profile_path = 'uploads/profiles/' . $profile_picture;
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // Validate email format
-        die("Invalid email format.");
+    // Validate inputs
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("❌ Invalid email format.");
     }
-    if (strlen($username) < 3 || strlen($username) > 20) { // Validate username length
-        die("Username must be between 3 and 20 characters.");
+
+    if (strlen($username) < 3 || strlen($username) > 20) {
+        die("❌ Username must be between 3 and 20 characters.");
     }
 
-    // Insert user into database
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, 'uploads/profiles/default_user_image.jpg')");
-    $stmt->bind_param("sss", $username, $email, $password); // Bind parameters
+    if (strlen($password_raw) < 6) {
+        die("❌ Password must be at least 6 characters long.");
+    }
 
-    if ($stmt->execute()) { // Execute the query
-        echo "Registration successful! <a href='login.php'>Login here</a>"; // Display success message
+    // Check if email already exists
+    $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $check_stmt->store_result();
+
+    if ($check_stmt->num_rows > 0) {
+        $check_stmt->close();
+        die("❌ This email is already registered. <a href='login.php'>Login here</a>");
+    }
+    $check_stmt->close();
+
+    // Hash password
+    $hashed_password = password_hash($password_raw, PASSWORD_DEFAULT);
+
+    // Insert new user
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $username, $email, $hashed_password, $profile_path);
+
+    if ($stmt->execute()) {
+        echo "✅ Registration successful! <a href='login.php'>Login here</a>";
     } else {
-        echo "Error: " . $stmt->error; // Display error message
+        echo "❌ Oops! Something went wrong. Please try again later.";
+        // You can log error details to a file if needed: error_log($stmt->error);
     }
 
-    $stmt->close(); // Close the statement
+    $stmt->close();
 }
 ?>
 
@@ -31,17 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form is submitted
 <html>
 <head>
     <title>Register - Chirpify</title>
-    <link rel="stylesheet" href="main.css">  <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body id="register-page">
     <h2>Register</h2>
     <div class="container">
-    <form method="post" id="register-form"> <!-- Added id -->
-        <input type="text" name="username" placeholder="Username" required><br> <!-- Input for username -->
-        <input type="email" name="email" placeholder="Email" required><br> <!-- Input for email -->
-        <input type="password" name="password" placeholder="Password" required><br> <!-- Input for password -->
-        <button type="submit">Register</button> <!-- Submit button -->
-    </form>
+        <form method="post" id="register-form">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Register</button>
+        </form>
     </div>
 </body>
 </html>

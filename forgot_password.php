@@ -3,9 +3,8 @@ session_start();
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = trim($_POST['email']); // Get the email from the form
+    $email = trim($_POST['email']);
 
-    // Check if the email exists in the database
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -13,14 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $token = bin2hex(random_bytes(50)); // Generate a unique token
+        $token = bin2hex(random_bytes(50));
 
-        // Store the token in the database with an expiration time
+        // Insert token with expiration
         $stmt = $conn->prepare("INSERT INTO password_resets (user_id, token, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))");
         $stmt->bind_param("is", $user['id'], $token);
         $stmt->execute();
 
-        // Send the reset link to the user's email
         $reset_link = "http://localhost/Chirpify/reset_password.php?token=" . $token;
         mail($email, "Password Reset Request", "Click the link to reset your password: $reset_link");
 
@@ -39,12 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
-    <h2>Forgot Password</h2>
-    <form method="post">
-        <input type="email" name="email" placeholder="Enter your email" required><br>
-        <button type="submit">Send Reset Link</button>
+<body id="forgot-password-page">
+    <h2 id="forgot-password-heading">Forgot Password</h2>
+
+    <form method="post" id="forgot-password-form">
+        <label for="email">Enter your email:</label><br>
+        <input type="email" name="email" id="email-input" placeholder="Email address" required><br><br>
+        <button type="submit" id="send-reset-button">Send Reset Link</button>
     </form>
 </body>
 </html>

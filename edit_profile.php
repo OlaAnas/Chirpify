@@ -24,7 +24,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile - Chirpify</title>
-    <link rel="stylesheet" href="main.css"> <!-- Link to the main CSS file -->
+    <link rel="stylesheet" href="main.css">
     <script>
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
@@ -35,39 +35,45 @@ $stmt->close();
         }
     </script>
 </head>
-<body>
-    <a href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
-    <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button -->
 
-<h2>Edit Profile</h2>
-<div class="container" id="edit-profile-container"> 
+<body id="edit-profile-page">
+    <a href="logout.php" class="logout-button" id="logout-button">Logout</a>
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
-<form method="post" id="edit-profile-form">
-    <label for="username">New Username:</label>
-    <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
+    <h2 id="edit-profile-heading">Edit Profile</h2>
 
-    <label for="password">New Password (leave empty if no change):</label>
-    <input type="password" name="password" id="password"><br><br>
+    <div class="container" id="edit-profile-container"> 
 
-    <button type="submit" id="save-changes-button">Save Changes</button>
-</form>
+        <!-- Edit Username and Password Form -->
+        <form method="post" id="edit-profile-form">
+            <label for="username">New Username:</label>
+            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
 
-<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
-<form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
-    <label for="profile_picture">Upload a Profile Picture:</label>
-    <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-    <button type="submit" id="upload-button">Upload</button>
-</form>
+            <label for="password">New Password (leave empty if no change):</label>
+            <input type="password" name="password" id="password"><br><br>
 
-<br>
-<a href="dashboard.php" id="dashboard-link">Back to Dashboard</a>
+            <button type="submit" id="save-changes-button">Save Changes</button>
+        </form>
 
-<br>
-<!-- Button to navigate back to profile -->
-<a href="profile.php" id="back-to-profile-link">
-    <button id="back-to-profile-button">Back to Profile</button>
-</a>
-</div>
+        <br>
 
+        <!-- Upload Profile Picture Form -->
+        <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
+            <label for="profile_picture">Upload a Profile Picture:</label>
+            <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
+            <button type="submit" id="upload-button">Upload</button>
+        </form>
+
+        <br>
+
+        <!-- Navigation Links -->
+        <a href="dashboard.php" id="dashboard-link">Back to Dashboard</a>
+        <br><br>
+
+        <a href="profile.php" id="back-to-profile-link">
+            <button type="button" id="back-to-profile-button">Back to Profile</button>
+        </a>
+
+    </div>
 </body>
 </html>
