@@ -11,7 +11,7 @@ $content = isset($_POST["content"]) ? trim($_POST["content"]) : null; // Get the
 
 // Check if a file has been uploaded
 if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] == 0) {
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']; // Added 'image/jpg'
     $file_type = $_FILES['post_image']['type'];
 
     // Validate file type
@@ -38,7 +38,7 @@ if (isset($_FILES['post_image']) && $_FILES['post_image']['error'] == 0) {
             die("Error uploading the image.");
         }
     } else {
-        die("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
+        die("Invalid file type. Only JPEG, JPG, PNG, and GIF are allowed."); // Updated error message
     }
 } elseif (!empty($content)) {
     // Insert the post without an image if only content is provided

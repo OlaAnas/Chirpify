@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $email = trim($_POST["email"]);
     $password_raw = $_POST["password"];
-    $profile_picture = 'default_user_image.jpg'; // Default profile picture filename
+    $profile_picture = 'defult_user_image.jpg'; // Corrected filename
     $profile_path = 'uploads/profiles/' . $profile_picture;
 
     // Validate inputs

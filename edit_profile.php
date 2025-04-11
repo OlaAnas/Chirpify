@@ -32,6 +32,9 @@ $stmt->close();
             links.forEach(link => link.classList.toggle('dark-mode'));
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(container => container.classList.toggle('dark-mode'));
+            document.body.style.backgroundColor = document.body.classList.contains('dark-mode') ? '#333' : '#f4f7f6';
         }
     </script>
 </head>

@@ -15,7 +15,7 @@ if (empty($comment) && !isset($_FILES['comment_image'])) {
 
 // Check if a file has been uploaded
 if (isset($_FILES['comment_image']) && $_FILES['comment_image']['error'] == 0) {
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']; // Added 'image/jpg'
     $file_type = $_FILES['comment_image']['type'];
 
     // Validate file type
@@ -42,7 +42,7 @@ if (isset($_FILES['comment_image']) && $_FILES['comment_image']['error'] == 0) {
             die("Error uploading the image.");
         }
     } else {
-        die("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
+        die("Invalid file type. Only JPEG, JPG, PNG, and GIF are allowed."); // Updated error message
     }
 } else {
     // Insert the comment without an image

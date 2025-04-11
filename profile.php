@@ -53,6 +53,9 @@ $stmt->close();
             links.forEach(link => link.classList.toggle('dark-mode'));
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => button.classList.toggle('dark-mode'));
+            const containers = document.querySelectorAll('.container');
+            containers.forEach(container => container.classList.toggle('dark-mode'));
+            document.body.style.backgroundColor = document.body.classList.contains('dark-mode') ? '#333' : '#f4f7f6';
         }
 
         function toggleMenu() {
@@ -78,9 +81,9 @@ $stmt->close();
 
         <!-- Display profile picture -->
         <?php if ($user_details && $user_details['profile_picture'] && file_exists('uploads/profiles/' . $user_details['profile_picture'])): ?>
-            <img src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
+            <img class="profile-photo" src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture">
         <?php else: ?>
-            <img src="uploads/profiles/default_user_image.jpg" alt="Default Profile Picture" width="150">
+            <img class="profile-photo" src="uploads/profiles/defult_user_image.jpg" alt="Default Profile Picture"> <!-- Corrected filename -->
         <?php endif; ?>
 
         <!-- Show upload form only if it's your own profile -->

@@ -177,7 +177,10 @@ $result = $stmt->get_result(); // Get the result set
             <li id="post-<?php echo $post['id']; ?>">
                 <p id="post-content-<?php echo $post['id']; ?>"><strong id="post-author-<?php echo $post['id']; ?>"><?php echo htmlspecialchars($post['username']); ?></strong>: <?php echo htmlspecialchars($post['content']); ?></p> <!-- Display post content -->
                 <?php if ($post['image_path']): ?> <!-- Check if the post has an image -->
-                    <img id="post-image-<?php echo $post['id']; ?>" src="<?php echo htmlspecialchars($post['image_path']); ?>" width="300"> <!-- Display post image -->
+                    <img id="post-image-<?php echo $post['id']; ?>" 
+                         src="<?php echo htmlspecialchars($post['image_path']); ?>" 
+                         style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;" 
+                         alt="Post image"> <!-- Display post image -->
                 <?php endif; ?>
                 <small id="post-date-<?php echo $post['id']; ?>">Posted on <?php echo $post['created_at']; ?></small><br> <!-- Display post creation date -->
 
@@ -208,18 +211,22 @@ $result = $stmt->get_result(); // Get the result set
                 <ul id="comments-list-<?php echo $post['id']; ?>"> <!-- Added id="comments-list-{post_id}" -->
                     <?php
                     $post_id = $post['id'];
-                    $comment_query = "SELECT comments.comment_text, users.username, comments.created_at
+                    $comment_query = "SELECT comments.id, comments.comment_text, users.username, comments.created_at
                                       FROM comments 
                                       JOIN users ON comments.user_id = users.id
-                                      WHERE comments.post_id = $post_id
+                                      WHERE comments.post_id = ?
                                       ORDER BY comments.created_at DESC"; // Query to fetch comments for the post
-                    $comment_result = $conn->query($comment_query); // Execute the query
+                    $comment_stmt = $conn->prepare($comment_query);
+                    $comment_stmt->bind_param("i", $post_id);
+                    $comment_stmt->execute();
+                    $comment_result = $comment_stmt->get_result();
                     while ($comment = $comment_result->fetch_assoc()): ?> <!-- Loop through all comments -->
-                        <li id="comment-<?php echo $comment['id']; ?>">
+                        <li id="comment-<?php echo $comment['id']; ?>"> <!-- Ensure unique ID for each comment -->
                             <p id="comment-content-<?php echo $comment['id']; ?>"><strong id="comment-author-<?php echo $comment['id']; ?>"><?php echo htmlspecialchars($comment['username']); ?></strong>: <?php echo htmlspecialchars($comment['comment_text']); ?></p>
                             <small id="comment-date-<?php echo $comment['id']; ?>">Commented on <?php echo $comment['created_at']; ?></small><br>
                         </li>
                     <?php endwhile; ?>
+                    <?php $comment_stmt->close(); ?>
                 </ul>
                 </div>
             </li>
