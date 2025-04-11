@@ -1,85 +1,91 @@
 <?php
-session_start(); // Start the session to manage user authentication
-include 'config.php'; // Include the database configuration file
+session_start(); 
+include 'config.php'; 
 
-// Redirect to login page if the user is not logged in
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php"); // Redirect to login page
-    exit; // Stop further execution
+    header("Location: login.php");
+    exit;
 }
 
 // Check if the logged-in user is an admin
 $stmt = $conn->prepare("SELECT is_admin FROM users WHERE id = ?");
-$stmt->bind_param("i", $_SESSION["user_id"]); // Bind the user ID
-$stmt->execute(); // Execute the query
-$result = $stmt->get_result(); // Get the result
-$user = $result->fetch_assoc(); // Fetch the user data
-$stmt->close(); // Close the statement
+$stmt->bind_param("i", $_SESSION["user_id"]);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
 
-if (!$user || !$user["is_admin"]) { // If the user is not an admin
-    echo "Access denied. You are not an admin."; // Display an error message
-    exit; // Stop further execution
+if (!$user || !$user["is_admin"]) {
+    echo "Access denied. You are not an admin.";
+    exit;
 }
 
-// Added CSRF token to the delete link
+// CSRF token
 $csrf_token = bin2hex(random_bytes(32));
 $_SESSION['csrf_token'] = $csrf_token;
 
 // Handle user deletion
 if (isset($_GET["delete"])) {
-    $user_id = $_GET["delete"]; // Get the user ID to delete
-
-    // Prevent admin from deleting themselves
+    $user_id = $_GET["delete"];
     if ($user_id == $_SESSION["user_id"]) {
-        echo "You cannot delete yourself!"; // Display an error message
+        echo "You cannot delete yourself!";
     } else {
         $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
-        $stmt->bind_param("i", $user_id); // Bind the user ID
-        if ($stmt->execute()) { // Execute the query
-            echo "User deleted successfully!"; // Display success message
+        $stmt->bind_param("i", $user_id);
+        if ($stmt->execute()) {
+            echo "User deleted successfully!";
         }
-        $stmt->close(); // Close the statement
+        $stmt->close();
     }
 }
 
 // Fetch all users
 $stmt = $conn->prepare("SELECT id, username, is_admin FROM users");
-$stmt->execute(); // Execute the query
-$result = $stmt->get_result(); // Get the result set
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Panel - Chirpify</title>
-    <link rel="stylesheet" href="main.css">  <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h2>Admin Panel</h2>
-    <div id="admin-panel" class="container"> 
-    <table border="1">
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Action</th>
-        </tr>
-        <?php while ($user = $result->fetch_assoc()): ?> <!-- Loop /through all users -->
-        <tr>
-            <td><?php echo $user["id"]; ?></td> <!-- Display user ID -->
-            <td><?php echo htmlspecialchars($user["username"]); ?></td> <!-- Display username -->
-            <td><?php echo $user["is_admin"] ? "Admin" : "User"; ?></td> <!-- Display role -->
-            <td>
-                <?php if (!$user["is_admin"]): ?> <!-- Only allow deletion of non-admin users -->
-                    <a href="admin.php?delete=<?php echo $user["id"]; ?>&csrf_token=<?php echo $csrf_token; ?>" onclick="return confirm('Are you sure?')">Delete</a> <!-- Delete link -->
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
+    <div id="admin-body">
+    <h2 id="admin-heading">Admin Panel</h2>
 
-    <br>
-    <a href="dashboard.php">Back to Dashboard</a> <!-- Link to go back to the dashboard -->
+    <div id="admin-panel" class="container"> 
+        <table id="user-table" border="1">
+            <thead id="user-table-header">
+                <tr>
+                    <th id="column-user-id">User ID</th>
+                    <th id="column-username">Username</th>
+                    <th id="column-role">Role</th>
+                    <th id="column-action">Action</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body">
+                <?php while ($user = $result->fetch_assoc()): ?> 
+                    <tr id="user-row-<?php echo $user['id']; ?>">
+                        <td id="user-id-<?php echo $user['id']; ?>"><?php echo $user["id"]; ?></td>
+                        <td id="username-<?php echo $user['id']; ?>"><?php echo htmlspecialchars($user["username"]); ?></td>
+                        <td id="role-<?php echo $user['id']; ?>"><?php echo $user["is_admin"] ? "Admin" : "User"; ?></td>
+                        <td id="action-<?php echo $user['id']; ?>">
+                            <?php if (!$user["is_admin"]): ?>
+                                <a id="delete-user-<?php echo $user['id']; ?>" 
+                                   href="admin.php?delete=<?php echo $user["id"]; ?>&csrf_token=<?php echo $csrf_token; ?>" 
+                                   onclick="return confirm('Are you sure?')">Delete</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+
+        <br>
+        <a id="back-to-dashboard" href="dashboard.php">Back to Dashboard</a>
+    </div>
     </div>
 </body>
 </html>

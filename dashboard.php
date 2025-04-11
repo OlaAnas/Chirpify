@@ -140,7 +140,6 @@ $result = $stmt->get_result(); // Get the result set
 </head>
 
 <body>
-    <a id="logout-button" href="logout.php" class="logout-button">Logout</a> <!-- Logout button -->
     <div id="dashboard-container" class="container"> 
     <h2 id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
     <div class="hamburger-menu">
@@ -149,13 +148,14 @@ $result = $stmt->get_result(); // Get the result set
             <a href="dashboard.php">Dashboard</a>
             <a href="home.php">Home</a>
             <a href="profile.php">Profile</a>
+            <a  href="logout.php" >Logout</a> <!-- Logout button -->
         </div>
     </div>
 
     <button id="darkModeToggle" onclick="toggleDarkMode()">Toggle Dark Mode</button> <!-- Keep this dark mode toggle button outside the navbar -->
     
     <div class="container"> 
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h2> <!-- Display the logged-in user's username -->
+   
 
     <!-- Admin Dashboard link -->
     <?php if (isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]): ?>
