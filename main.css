@@ -699,6 +699,9 @@ body.dark-mode a {
 body.dark-mode a:hover {
     color: #fff;
 }
+body.dark-mode #label{
+    color: black;
+}
 
 /* Toggle Dark Mode Button */
 #dark-mode-toggle {
@@ -924,6 +927,107 @@ body.dark-mode form button:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 /*register styles end.*/
+
+/* Admin Page Styles */
+#admin-body {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#admin-heading {
+    font-size: 2rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#admin-panel {
+    margin-top: 20px;
+}
+
+#user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#user-table th, #user-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#user-table th {
+    background-color: #4A90E2;
+    color: white;
+    font-weight: bold;
+}
+
+#user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#user-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+#user-table a {
+    color: #E74C3C;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#user-table a:hover {
+    text-decoration: underline;
+}
+
+#back-to-dashboard {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-dashboard:hover {
+    background-color: #357ABD;
+}
+
+/* Dark Mode */
+body.dark-mode #admin-body {
+    background-color: #444;
+    color: #f4f7f6;
+}
+
+body.dark-mode #user-table th {
+    background-color: #333;
+}
+
+body.dark-mode #user-table tr:nth-child(even) {
+    background-color: #555;
+}
+
+body.dark-mode #user-table tr:hover {
+    background-color: #666;
+}
+
+body.dark-mode #back-to-dashboard {
+    background-color: #333;
+    color: #f4f7f6;
+}
+
+body.dark-mode #back-to-dashboard:hover {
+    background-color: #666;
+}
 
 
 

@@ -10,11 +10,11 @@ if (!isset($_SESSION["user_id"])) {
 
 // Fetch current user info
 $user_id = $_SESSION["user_id"];
-$stmt = $conn->prepare("SELECT username FROM users WHERE id = ?");
+$stmt = $conn->prepare("SELECT username, profile_picture FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$user_details = $result->fetch_assoc();
 $stmt->close();
 ?>
 
@@ -44,12 +44,19 @@ $stmt->close();
 
     <div class="container" id="edit-profile-container"> 
 
+        <!-- Display Profile Picture -->
+        <?php if ($user_details && $user_details['profile_picture'] && file_exists('uploads/profiles/' . $user_details['profile_picture'])): ?>
+            <img src="uploads/profiles/<?php echo htmlspecialchars($user_details['profile_picture']); ?>" alt="Profile Picture" width="150">
+        <?php else: ?>
+            <img src="uploads/profiles/default_user_image.jpg" alt="Default Profile Picture" width="150">
+        <?php endif; ?>
+
         <!-- Edit Username and Password Form -->
         <form method="post" id="edit-profile-form">
-            <label for="username">New Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user["username"]); ?>" required><br><br>
+            <label id="label" for="username">New Username:</label>
+            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($user_details["username"]); ?>" required><br><br>
 
-            <label for="password">New Password (leave empty if no change):</label>
+            <label id="label" for="password">New Password (leave empty if no change):</label>
             <input type="password" name="password" id="password"><br><br>
 
             <button type="submit" id="save-changes-button">Save Changes</button>
@@ -59,7 +66,7 @@ $stmt->close();
 
         <!-- Upload Profile Picture Form -->
         <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data" id="upload-profile-picture-form">
-            <label for="profile_picture">Upload a Profile Picture:</label>
+            <label id="label" for="profile_picture">Upload a Profile Picture:</label>
             <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
             <button type="submit" id="upload-button">Upload</button>
         </form>
